@@ -1,0 +1,25 @@
+<h1>Search for a film:</h1>
+
+<div id="film-search-container">
+  <form
+    id="search-form"
+    action="/film-search"
+    method="get"
+    enctype="application/x-www-form-urlencoded"
+  >
+    <input id="name" name="name" type="text" value="" placeholder="Enter film name" />
+    <button type="submit">Search</button>
+  </form>
+</div>
+
+{{#if data}}
+  <div id="film-results-container">
+    {{#each data}}
+      <ul>
+        <li>{{this.original_title}}</li>
+        <span>Release date: {{this.release_date}}</span>
+        <p>Summary: {{this.overview}}</p>
+      </ul>
+    {{/each}}
+  </div>
+{{/if}}
