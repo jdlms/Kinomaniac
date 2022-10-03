@@ -1,11 +1,24 @@
 body {
   width: 100vw;
   height: auto;
+  background-color: #0e0e1d;
+}
+
+h6 {
+  color: whitesmoke;
+}
+
+a {
+  color: whitesmoke;
+  text-decoration: none;
 }
 
 li {
   display: inline-block;
   white-space: nowrap;
+
+  list-style-position: inside;
+  border: 1px solid gray;
 }
 
 #film-results-ul {
