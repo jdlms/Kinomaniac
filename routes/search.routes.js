@@ -5,8 +5,21 @@ const { MovieDb } = require("moviedb-promise");
 const moviedb = new MovieDb(process.env.KEY);
 
 //render film search page
-router.get("/films", (req, res) => {
-  res.render("film-search-page", { docTitle: "Film Search" });
+router.get("/films", async (req, res) => {
+  const data = await moviedb.trending({ media_type: "movie", time_window: "week" });
+
+  const config = await moviedb.configuration();
+  const configCall = config.images;
+  const configString = configCall.base_url + configCall.poster_sizes[2];
+  //map img link/string into each movie object
+  data.results.map((movie) => (movie.first_url_string = configString));
+
+  console.log(data);
+  res.render("film-search-page", {
+    docTitle: "Film Search",
+    cssSheet: "film-search",
+    data: data.results,
+  });
 });
 
 //film search
@@ -17,16 +30,15 @@ router.get("/film-search", async (req, res) => {
     //call config for img link/string construction
     const config = await moviedb.configuration();
     const configCall = config.images;
-    const configString = configCall.base_url + configCall.poster_sizes[3];
+    const configString = configCall.base_url + configCall.poster_sizes[2];
     //map img link/string into each movie object
     data.results.map((movie) => (movie.first_url_string = configString));
-
+    //render results
     res.render("film-search-page", {
       docTitle: "Film Search",
       data: data.results,
     });
     console.log(data);
-
   } catch (error) {
     res.render("error");
     console.log("The error while searching artists occurred: ", error);

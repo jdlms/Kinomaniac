@@ -1,12 +1,23 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  width: 100vw;
+  height: auto;
 }
 
-a {
-  color: #00b7ff;
+li {
+  display: inline-block;
+  white-space: nowrap;
 }
 
-h1 {
-  color: 15px;
+#film-results-ul {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  display: inline-block;
+}
+
+#film-search-container {
+  width: 95vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }
