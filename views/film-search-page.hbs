@@ -18,8 +18,12 @@
       <ul>
         <li>{{this.original_title}}</li>
         <span>Release date: {{this.release_date}}</span>
+        <img src="{{this.first_url_string}}{{this.poster_path}}" alt="" />
         <p>Summary: {{this.overview}}</p>
       </ul>
     {{/each}}
+
+    {{! https://image.tmdb.org/t/p/original/wwemzKWzjKYJFfCeiB57q3r4Bcm.svg }}
+
   </div>
 {{/if}}

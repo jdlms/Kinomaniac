@@ -1,28 +1,32 @@
 const router = require("express").Router();
-
 const { MovieDb } = require("moviedb-promise");
 
+//api key
 const moviedb = new MovieDb(process.env.KEY);
 
+//render film search page
 router.get("/films", (req, res) => {
   res.render("film-search-page", { docTitle: "Film Search" });
 });
 
+//film search
 router.get("/film-search", async (req, res) => {
   try {
+    //call movie data by title
     const data = await moviedb.searchMovie(req.query.name);
+    //call config for img link/string construction
+    const config = await moviedb.configuration();
+    const configCall = config.images;
+    const configString = configCall.base_url + configCall.poster_sizes[3];
+    //map img link/string into each movie object
+    data.results.map((movie) => (movie.first_url_string = configString));
+
     res.render("film-search-page", {
       docTitle: "Film Search",
       data: data.results,
     });
-
-    // let listTitle = data.results.forEach(function (element) {
-    //   return element.original_title;
-    // });
-    // console.log(list);
     console.log(data);
 
-    // console.log(data.results);
   } catch (error) {
     res.render("error");
     console.log("The error while searching artists occurred: ", error);
