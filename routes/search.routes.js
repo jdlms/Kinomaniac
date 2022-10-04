@@ -6,20 +6,25 @@ const moviedb = new MovieDb(process.env.KEY);
 
 //render film search page
 router.get("/films", async (req, res) => {
-  const data = await moviedb.trending({ media_type: "movie", time_window: "week" });
+  try {
+    const data = await moviedb.trending({ media_type: "movie", time_window: "week" });
 
-  const config = await moviedb.configuration();
-  const configCall = config.images;
-  const configString = configCall.base_url + configCall.poster_sizes[2];
-  //map img link/string into each movie object
-  data.results.map((movie) => (movie.first_url_string = configString));
+    const config = await moviedb.configuration();
+    const configCall = config.images;
+    const configString = configCall.base_url + configCall.poster_sizes[2];
+    //map img link/string into each movie object
+    data.results.map((movie) => (movie.first_url_string = configString));
 
-  console.log(data);
-  res.render("film-search-page", {
-    docTitle: "Film Search",
-    cssSheet: "film-search",
-    data: data.results,
-  });
+    console.log(data);
+    res.render("film-search-page", {
+      docTitle: "Film Search",
+      cssSheet: "film-search",
+      data: data.results,
+    });
+  } catch (error) {
+    res.render("error");
+    console.log("The error while searching artists occurred: ", error);
+  }
 });
 
 //film search

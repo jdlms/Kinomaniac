@@ -17,18 +17,16 @@
     <div id="film-results-container">
       <ul id="film-results-ul">
         {{#each data}}
-          <li><img
-              src="{{this.first_url_string}}{{this.poster_path}}"
-              alt="{{this.original_title}} poster"
-            />
+          <li><a href="/film-details/{{this.id}}"><img
+                src="{{this.first_url_string}}{{this.poster_path}}"
+                alt="{{this.original_title}} poster"
+              />
+            </a>
             <br />
             <h6>{{this.original_title}}</h6>
           </li>
         {{/each}}
       </ul>
-
-      {{! https://image.tmdb.org/t/p/original/wwemzKWzjKYJFfCeiB57q3r4Bcm.svg }}
-
     </div>
   {{/if}}
 
