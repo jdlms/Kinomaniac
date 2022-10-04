@@ -27,6 +27,43 @@ module.exports = (app) => {
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
 
+  // Authetication with Goole
+
+  const session = require('express-session');
+  const passport = require('passport');
+
+  //Get the GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET from Google Developer Console
+  const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+  const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
+
+  const GoogleStrategy = require('passport-google-oauth20').Strategy;
+
+  passport.use(new GoogleStrategy({
+    clientID: GOOGLE_CLIENT_ID,
+    clientSecret: GOOGLE_CLIENT_SECRET,
+    callbackURL: "http://localhost:3000/auth/google/callback",
+    passReqToCallback: true,
+  },
+    function (accessToken, refreshToken, profile, cb) {
+      // User.findOrCreate({ googleId: user.id }, function (err, user) {
+        return cb(err, profile);
+      // });
+    }
+  ));
+
+  passport.serializeUser(function (user, done) {
+    done(null, user);
+  });
+
+  passport.deserializeUser(function (user, done) {
+    done(null, user);
+  });
+
+  app.use(session({ secret: "holaamigo", resave: false, saveUninitialized: true }));
+  app.use(passport.initialize()) // init passport on every route call
+  app.use(passport.session())    //allow passport to use "express-session"
+
+
   // Normalizes the path to the views folder
   app.set("views", path.join(__dirname, "..", "views"));
   // Sets the view engine to handlebars
