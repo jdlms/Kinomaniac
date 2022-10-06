@@ -15,6 +15,7 @@
     "mongoose": "^6.6.3",
     "mongoose-findorcreate": "^3.0.0",
     "morgan": "^1.10.0",
+    "moviedb-promise": "^3.1.18",
     "passport": "^0.6.0",
     "passport-google-oauth2": "^0.2.0",
     "passport-google-oauth20": "^2.0.0",

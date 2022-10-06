@@ -1,0 +1,33 @@
+{{! <h1>Search for a film:</h1> }}
+<div id="page-wrapper">
+  <nav id="film-search-container">
+    <a href="/films">Discover</a>
+    <form
+      id="search-form"
+      action="/film-search"
+      method="get"
+      enctype="application/x-www-form-urlencoded"
+    >
+      <input id="name" name="name" type="text" value="" placeholder="Enter film name" />
+      <button type="submit">Search</button>
+    </form>
+  </nav>
+
+  {{#if data}}
+    <div id="film-results-container">
+      <ul id="film-results-ul">
+        {{#each data}}
+          <li><a href="/film-details/{{this.id}}"><img
+                src="{{this.first_url_string}}{{this.poster_path}}"
+                alt="{{this.original_title}} poster"
+              />
+            </a>
+            <br />
+            <h6>{{this.original_title}}</h6>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+  {{/if}}
+
+</div>
