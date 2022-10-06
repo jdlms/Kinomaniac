@@ -4,6 +4,11 @@ body {
   background-color: #0e0e1d;
 }
 
+h1 {
+  font-size: 56px;
+  line-height: 1;
+}
+
 h6 {
   color: whitesmoke;
 }
@@ -24,15 +29,55 @@ a {
   color: whitesmoke;
   text-decoration: none;
 }
+.navbar {
+  padding: 0 30px;
+}
+
+.navbar-brand {
+  font-weight:  800;
+}
+
+.me-2 {
+  margin-top: 15px;
+  margin-right: 1rem!important;
+}
 
 li {
   display: inline-block;
   white-space: nowrap;
 
   list-style-position: inside;
-  border: 1px solid gray;
-  border-radius: 25px;
+  /* border: 1px solid gray; */
+  /* border-radius: 25px; */
 }
+
+.header {
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.header-title {
+  text-align: center;
+    max-width: 720px;
+    display: flex;
+    justify-content: center;
+    font-weight: 800;
+}
+
+.cta-btn {
+  width: 200px;
+  margin-top: 30px;
+}
+
+.background-image {
+  background-image: url("https://www.thestreambible.com/wp-content/uploads/2022/01/Troy-F-1024x561.jpg");
+  background-position: center;
+  background-size: cover;
+  height: 700px;
+  box-shadow: inset 0 0 0 2000px rgba(17, 17, 17, 0.3);
+}
+
 
 img {
   border-radius: 25px;
