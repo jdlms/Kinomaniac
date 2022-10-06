@@ -8,6 +8,18 @@ h6 {
   color: whitesmoke;
 }
 
+p {
+  color: whitesmoke;
+}
+
+h1 {
+  color: whitesmoke;
+}
+
+span {
+  color: whitesmoke;
+}
+
 a {
   color: whitesmoke;
   text-decoration: none;
@@ -19,6 +31,11 @@ li {
 
   list-style-position: inside;
   border: 1px solid gray;
+  border-radius: 25px;
+}
+
+img {
+  border-radius: 25px;
 }
 
 #film-results-ul {
