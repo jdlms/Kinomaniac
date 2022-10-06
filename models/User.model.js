@@ -1,7 +1,7 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, default: mongoose } = require("mongoose");
 const findOrCreate = require("mongoose-findorcreate");
 
-//User will have: username, 
+//User will have: username,
 const userSchema = new Schema(
   {
     googleId: {
@@ -11,6 +11,9 @@ const userSchema = new Schema(
     movies: {
       type: String,
     },
+    likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Like" }],
+    review: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }],
+    seen: [{ type: mongoose.Schema.Types.ObjectId, ref: "seen" }],
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
@@ -19,7 +22,6 @@ const userSchema = new Schema(
 );
 
 userSchema.plugin(findOrCreate);
-
 const User = model("User", userSchema);
 
 module.exports = User;
