@@ -13,6 +13,9 @@ const cookieParser = require("cookie-parser");
 // https://www.npmjs.com/package/serve-favicon
 const favicon = require("serve-favicon");
 
+const session = require('express-session');
+const passport = require('passport');
+const User = require("../models/User.model");
 // ℹ️ global package used to `normalize` paths amongst different operating systems
 // https://www.npmjs.com/package/path
 const path = require("path");
@@ -26,6 +29,41 @@ module.exports = (app) => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
+
+  //Get the GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET from Google Developer Console
+  const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+  const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
+
+  const GoogleStrategy = require('passport-google-oauth20').Strategy;
+
+  passport.use(new GoogleStrategy({
+    clientID: GOOGLE_CLIENT_ID,
+    clientSecret: GOOGLE_CLIENT_SECRET,
+    callbackURL: "/auth/google/callback",
+    passReqToCallback: true,
+  },
+    function (req, accessToken, refreshToken, profile, cb) {
+      console.log(profile)
+      User.findOrCreate({ googleId: profile.id }, {movies: "Seven"}, function (err, user) {
+        return cb(err, { googleId: profile.googleId, movies: user.movies, displayName: profile.displayName });
+      });
+    }
+  ));
+
+  passport.serializeUser(function (user, done) {
+    console.log("A", user);
+    done(null, user);
+  });
+
+  passport.deserializeUser(function (user, done) {
+    console.log("B", user);
+    done(null, user);
+  });
+
+  app.use(session({ secret: "holaamigo", resave: false, saveUninitialized: true }));
+  app.use(passport.initialize()) // init passport on every route call
+  app.use(passport.session())    //allow passport to use "express-session"
+
 
   // Normalizes the path to the views folder
   app.set("views", path.join(__dirname, "..", "views"));
