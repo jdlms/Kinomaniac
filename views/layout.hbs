@@ -15,9 +15,9 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Kinomaniacs</a>
+        <a class="navbar-brand" href="/">Kinomaniacs</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -30,12 +30,15 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <button type="button" class="btn btn-primary btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Login
+</button>
+          <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Films</a>
+              <a class="nav-link" href="/films">Films</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Lists</a>
@@ -43,25 +46,54 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Upcoming</a>
             </li>
+            <li class="nav-item dropdown">
+              				<a href="#" data-bs-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action" aria-expanded="false"><img src="{{picture}}" class="avatar" alt="Avatar"> {{name}} </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/profile">Profile</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><form action="/logout" method="POST">
+     <button class="dropdown-item btn-link" type="submit"> Logout </button>
+</form></li>
+          </ul>
+        </li>
           </ul>
           <form class="d-flex" role="search">
             <input
               class="form-control me-2"
               type="search"
-              placeholder="Search"
+              placeholder="Search movie"
               aria-label="Search"
             />
           </form>
-          <button type="button" class="btn btn-outline-warning">Sign in</button>
-        </div>
       </div>
     </nav>
     <main>
-
+    
       {{{body}}}
 
     </main>
-
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Create an account</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Sign up with your social media account or email address</p>
+       <form action="/auth/google" method="GET">
+            <button type="submit" class="btn btn-danger"> <i class="bi bi-google"></i> SIGN UP WITH GOOGLE </button>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>    
     <script src="/js/script.js"></script>
   </body>
 

@@ -1,3 +1,5 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+
 body {
   width: 100vw;
   height: auto;
@@ -34,16 +36,38 @@ a {
 }
 
 .navbar-brand {
-  font-weight:  800;
+  font-weight: 800;
 }
+
+.navbar-collapse {
+  flex-direction: row-reverse;
+  align-items: center;
+  /* justify-content: space-between; */
+  max-width: 1000px;
+  
+}
+
+.navbar-nav {
+  align-items: center;
+}
+
+.navbar-nav ul {
+  align-items: center;
+}
+
 
 .me-2 {
   margin-top: 15px;
-  margin-right: 1rem!important;
+  margin-right: 1rem !important;
+}
+
+.form-control {
+  background-color: #23292f;
+  border-color: #65696c;
 }
 
 li {
-  display: inline-block;
+  /* display: inline-block; */
   white-space: nowrap;
 
   list-style-position: inside;
@@ -53,16 +77,16 @@ li {
 
 .header {
   display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .header-title {
   text-align: center;
-    max-width: 720px;
-    display: flex;
-    justify-content: center;
-    font-weight: 800;
+  max-width: 720px;
+  display: flex;
+  justify-content: center;
+  font-weight: 800;
 }
 
 .cta-btn {
@@ -78,6 +102,34 @@ li {
   box-shadow: inset 0 0 0 2000px rgba(17, 17, 17, 0.3);
 }
 
+.modal-content {
+  background-color: #23292f!important;
+}
+
+.btn-close {
+color: white;
+}
+
+.dropdown-menu {
+  background-color: #23292f;
+}
+
+.dropdown-item {
+  color: white;
+}
+.dropdown-item:hover {
+  background-color: #ffc107;
+}
+
+.btn-link {
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: inherit;
+}
 
 img {
   border-radius: 25px;
