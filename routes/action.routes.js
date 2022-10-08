@@ -11,4 +11,15 @@ const { movieAction } = require("../models/Movie.module");
 // const { Review } = require("../models/Review.model");
 // const { Seen } = require("../models/Seen.model");
 
+//add to watch list
+router.post("/film-details/:id", isLoggedIn, async (req, res) => {
+  try {
+ 
+    req.user;
+  } catch (error) {
+    res.render("error");
+    console.log(error);
+  }
+});
+
 module.exports = router;

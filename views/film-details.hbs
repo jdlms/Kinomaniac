@@ -3,6 +3,9 @@
   <span>{{tagline}}</span>
   <p>{{overview}}</p>
 
+  <form action="/film-details/{{id}}" method="POST">
+    <button type="submit">Add to watch list</button>
+  </form>
 {{/with}}
 
 {{! to include in details page, from movieInfo api call: original_title, overview, poster_path, genres, tagline }}
