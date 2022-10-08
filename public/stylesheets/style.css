@@ -1,5 +1,6 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
 
+/* General stuff */
 body {
   width: 100vw;
   height: auto;
@@ -31,6 +32,8 @@ a {
   color: whitesmoke;
   text-decoration: none;
 }
+
+/* Navigation */
 .navbar {
   padding: 0 30px;
 }
@@ -66,14 +69,28 @@ a {
   border-color: #65696c;
 }
 
-li {
-  /* display: inline-block; */
-  white-space: nowrap;
-
-  list-style-position: inside;
-  /* border: 1px solid gray; */
-  /* border-radius: 25px; */
+.dropdown-menu {
+  background-color: #23292f;
 }
+
+.dropdown-item {
+  color: white;
+}
+.dropdown-item:hover {
+  background-color: #ffc107;
+}
+
+.btn-link {
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Header with CTA */ 
 
 .header {
   display: flex;
@@ -102,6 +119,8 @@ li {
   box-shadow: inset 0 0 0 2000px rgba(17, 17, 17, 0.3);
 }
 
+
+ /* Modal */
 .modal-content {
   background-color: #23292f!important;
 }
@@ -110,25 +129,20 @@ li {
 color: white;
 }
 
-.dropdown-menu {
-  background-color: #23292f;
-}
 
-.dropdown-item {
-  color: white;
-}
-.dropdown-item:hover {
-  background-color: #ffc107;
-}
 
-.btn-link {
-  border: none;
-  outline: none;
-  background: none;
-  cursor: pointer;
-  text-decoration: none;
-  font-family: inherit;
-  font-size: inherit;
+
+
+
+
+
+li {
+  /* display: inline-block; */
+  white-space: nowrap;
+
+  list-style-position: inside;
+  /* border: 1px solid gray; */
+  /* border-radius: 25px; */
 }
 
 img {

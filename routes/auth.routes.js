@@ -21,7 +21,7 @@ router.get('/auth/google/callback', passportMiddleware);
 //Define the Protected Route, by using the "checkAuthenticated" function defined above as middleware
 router.get("/profile", isLoggedIn, (req, res) => {
   console.log(req.user);
-  res.render("auth/profile", { name: req.user.displayName, movies: req.user.movies, picture: req.user.photos._json.pictures});
+  res.render("auth/profile", { user: req.user });
 });
 
 //Define the Logout

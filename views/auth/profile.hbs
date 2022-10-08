@@ -1,11 +1,13 @@
 <div>
+      <h1> {{user.displayName}} is logged in </h1>
 
-<h1> {{name}} is logged in </h1>
-  
-<form action="/logout" method="POST">
-     <button type="submit"> Logout </button>
-</form>
+      <form action="/logout" method="POST">
+        <button type="submit"> Logout </button>
+      </form>
 
-<p>{{name}} likes {{movies}}.</p>
+      <p>{{user.displayName}} likes {{user.movies}}.</p>
+      
+   
+          <img src="{{user.picture}}" width="150" height="150"/>
 
 </div>

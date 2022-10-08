@@ -30,7 +30,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <button type="button" class="btn btn-primary btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <button type="button" class="btn btn-primary btn-warning" id="login-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Login
 </button>
           <ul class="navbar-nav ml-auto">
@@ -47,7 +47,7 @@
               <a class="nav-link" href="#">Upcoming</a>
             </li>
             <li class="nav-item dropdown">
-              				<a href="#" data-bs-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action" aria-expanded="false"><img src="{{picture}}" class="avatar" alt="Avatar"> {{name}} </a>
+              				<a href="#" data-bs-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action" aria-expanded="false"><img src="{{user.picture}}" class="avatar" alt="Avatar"/> {{user.displayName}} </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="/profile">Profile</a></li>
             <li><a class="dropdown-item" href="#">Another action</a></li>
@@ -68,7 +68,7 @@
           </form>
       </div>
     </nav>
-    <main>
+    <main class="main-content">
     
       {{{body}}}
 
