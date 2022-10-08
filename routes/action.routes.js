@@ -5,9 +5,11 @@ const { MovieDb } = require("moviedb-promise");
 const moviedb = new MovieDb(process.env.KEY);
 
 //require models
-const { Like } = require("../models/Like.model");
-const { Review } = require("../models/Review.model");
-const { Seen } = require("../models/Seen.model");
+const { Movie } = require("../models/Movie.module");
+//drafting:
+// const { Like } = require("../models/Like.model");
+// const { Review } = require("../models/Review.model");
+// const { Seen } = require("../models/Seen.model");
 
 
 

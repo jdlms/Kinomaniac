@@ -8,12 +8,13 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    movies: {
-      type: String,
+    toWatchList: {
+      type: Array,
     },
-    likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Like" }],
-    review: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }],
-    seen: [{ type: mongoose.Schema.Types.ObjectId, ref: "seen" }],
+    //drafting:
+    //   likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Like" }],
+    //   review: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }],
+    //   seen: [{ type: mongoose.Schema.Types.ObjectId, ref: "seen" }],
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
