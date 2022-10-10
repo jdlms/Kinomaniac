@@ -12,9 +12,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
-
-  <body>
+    <body>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">Kinomaniacs</a>
@@ -30,9 +28,9 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <button type="button" class="btn btn-primary btn-warning" id="login-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Login
-</button>
+          <button type="button" class="btn btn-primary btn-warning" id="login-btn" data-bs-toggle="modal" data-bs-target="#exampleModal" ><i class="bi bi-box-arrow-in-right"></i>
+            Login
+          </button>
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="/">Home</a>
@@ -46,14 +44,14 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Upcoming</a>
             </li>
-            <li class="nav-item dropdown">
-              				<a href="#" data-bs-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action" aria-expanded="false"><img src="{{user.picture}}" class="avatar" alt="Avatar"/> {{user.displayName}} </a>
+            <li class="nav-item dropdown hidden">
+              				<a href="#" data-bs-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action" id="user-info" aria-expanded="false"><img src="{{user.picture}}" class="avatar" alt="Avatar"/> {{user.displayName}} </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/profile">Profile</a></li>
+            <li><a class="dropdown-item" href="/profile"><i class="bi bi-person-circle"></i> Profile</a></li>
             <li><a class="dropdown-item" href="#">Another action</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><form action="/logout" method="POST">
-     <button class="dropdown-item btn-link" type="submit"> Logout </button>
+     <button class="dropdown-item btn-link" type="submit"><i class="bi bi-box-arrow-right"></i> Logout </button>
 </form></li>
           </ul>
         </li>
@@ -68,6 +66,8 @@
           </form>
       </div>
     </nav>
+  </head>
+
     <main class="main-content">
     
       {{{body}}}
