@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const movie_schema = new mongoose.Schema({
   userId: {
     type: String,
-    required: true,
+    // required: true,
   },
   filmId: {
     type: Number,
@@ -11,7 +11,6 @@ const movie_schema = new mongoose.Schema({
   },
   watchList: {
     type: Boolean,
-    required: true,
   },
   review: {
     type: String,

@@ -9,11 +9,14 @@
   </form>
 
   <h6>Review:</h6>
-  <form action="/film/{{id}}" method="POST">
-    <textarea class="form-control" id="review" rows="3"></textarea>
+  <form action="/film/{{id}}/review" method="POST">
+    <textarea class="form-control" id="review" name="review" rows="3"></textarea>
 
     <button type="submit">Submit</button>
   </form>
+
+
+  <h6></h6>
 
 {{/with}}
 
