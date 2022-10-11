@@ -1,1 +1,26 @@
 <h1>test</h1>
+
+<h4>Watchlist:</h4>
+<div id="watchlist-container">
+
+
+ {{#if data}}
+      <ul id="film-results-ul">
+        {{#each data}}
+          <li><a href="/film-details/{{this.id}}"><img
+                src="{{this.first_url_string}}{{this.poster_path}}"
+                alt="{{this.original_title}} poster"
+              />
+            </a>
+            <br />
+            <h6>Like</h6><h6>Watched</h6>
+            <h6>Remove</h6>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+  {{/if}}
+
+
+
+</div>

@@ -9,23 +9,20 @@ const { Movie } = require("../models/Movie.module");
 router.get("/lists", isLoggedIn, async (req, res) => {
   try {
     const movies = await Movie.find({ userId: req.user.googleId });
+
+    // async map with Promise.all:
     idArray = [];
     movies.forEach((element) => idArray.push(element.filmId));
-    let promises = idArray.map(async (m) => {
-      return await moviedb.movieInfo({ id: m });
-    });
+    let movieIdRequests = idArray.map(async (movieId) => await moviedb.movieInfo({ id: movieId }));
+    const data = await Promise.all(movieIdRequests);
 
-    for (const res of await Promise.all(promises)) console.log(promises);
+    const config = await moviedb.configuration();
+    const configCall = config.images;
+    const configString = configCall.base_url + configCall.poster_sizes[1];
 
-    //  //simply iterate those
-    //  //val will be the result of the promise not the promise itself
-    //  for await (let val of promises){
-    //     ....
-    //  }
-
-    // const data = await moviedb.movieInfo({ id: req.params.id });
-
-    res.render("user-lists-page");
+    data.map((movie) => (movie.first_url_string = configString));
+    console.log(data);
+    res.render("user-lists-page", { docTitle: "Lists", data });
   } catch (error) {
     res.render("error");
     console.log(error);

@@ -7,7 +7,6 @@ const moviedb = new MovieDb(process.env.KEY);
 router.get("/film-details/:id", async (req, res) => {
   try {
     const data = await moviedb.movieInfo({ id: req.params.id });
-    console.log(data.original_language);
     res.render("film-details", { data });
   } catch (error) {}
 });
