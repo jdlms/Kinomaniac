@@ -1,7 +1,10 @@
-const { Schema, model } = require("mongoose");
-const findOrCreate = require("mongoose-findorcreate");
+const mongoose = require("mongoose");
 
-const movieActionSchema = new Schema({
+const movie_schema = new mongoose.Schema({
+  userId: {
+    type: String,
+    required: true,
+  },
   filmId: {
     type: Number,
     required: true,
@@ -12,6 +15,6 @@ const movieActionSchema = new Schema({
   },
 });
 
-movieActionSchema.plugin(findOrCreate);
-const MovieAction = model("MovieAction", movieActionSchema);
-module.exports = MovieAction;
+const Movie = mongoose.model("movie", movie_schema);
+
+module.exports = { Movie };
