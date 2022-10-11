@@ -7,6 +7,13 @@ const moviedb = new MovieDb(process.env.KEY);
 router.get("/film-details/:id", async (req, res) => {
   try {
     const data = await moviedb.movieInfo({ id: req.params.id });
+
+    //construction of backdrop image url
+    const config = await moviedb.configuration();
+    const configCall = config.images;
+    const configString = configCall.base_url + configCall.backdrop_sizes[1];
+    data.first_url_string = configString;
+
     res.render("film-details", { data });
   } catch (error) {}
 });
