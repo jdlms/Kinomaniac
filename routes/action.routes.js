@@ -26,6 +26,6 @@ router.post("/film-details/:id", isLoggedIn, async (req, res) => {
     }
   }
 });
-// let attempt =  await Movie.find({ filmId: req.params.id })
+
 
 module.exports = router;

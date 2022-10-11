@@ -8,6 +8,13 @@
     <button type="submit">Add to watch list</button>
   </form>
 
+  <h6>Review:</h6>
+  <form action="/film/{{id}}" method="POST">
+    <textarea class="form-control" id="review" rows="3"></textarea>
+
+    <button type="submit">Submit</button>
+  </form>
+
 {{/with}}
 
 {{! to include in details page, from movieInfo api call: original_title, overview, poster_path, genres, tagline }}

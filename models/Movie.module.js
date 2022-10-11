@@ -13,6 +13,9 @@ const movie_schema = new mongoose.Schema({
     type: Boolean,
     required: true,
   },
+  review: {
+    type: String,
+  },
 });
 
 const Movie = mongoose.model("movie", movie_schema);

@@ -42,6 +42,8 @@ a {
 
 .navbar-brand {
   font-weight: 800;
+  font-size: x-large;
+  font-family: "Limelight", cursive;
 }
 
 .navbar-collapse {

@@ -1,26 +1,29 @@
 <div class="container-fluid header background-image">
   <div class="row header-title">
     <h1>All the films and series you ever wanted to watch, tracked in one place</h1>
-    <button type="button" class="btn btn-warning cta-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Sign up for free</button>
+    <button
+      type="button"
+      class="btn btn-warning cta-btn"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+    >Sign up for free</button>
   </div>
   <div></div>
 
 </div>
 {{#if data}}
-    <div id="film-results-container">
-      <ul id="film-results-ul">
-        {{#each data}}
-          <li><a href="/film-details/{{this.id}}"><img
-                src="{{this.first_url_string}}{{this.poster_path}}"
-                alt="{{this.original_title}} poster"
-              />
-            </a>
-            <br />
-            <h6>{{this.original_title}}</h6>
-          </li>
-        {{/each}}
-      </ul>
-    </div>
-  {{/if}}
-<h1>{{appTitle}} 🚀</h1>
-<p>Welcome Ironhacker!</p>
+  <div id="film-results-container">
+    <ul id="film-results-ul">
+      {{#each data}}
+        <li><a href="/film-details/{{this.id}}"><img
+              src="{{this.first_url_string}}{{this.poster_path}}"
+              alt="{{this.original_title}} poster"
+            />
+          </a>
+          <br />
+          <h6>{{this.original_title}}</h6>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+{{/if}}
