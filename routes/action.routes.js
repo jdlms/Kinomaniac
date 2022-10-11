@@ -21,5 +21,6 @@ router.post("/film-details/:id", isLoggedIn, async (req, res) => {
     console.log(error);
   }
 });
+// let attempt =  await Movie.find({ filmId: req.params.id })
 
 module.exports = router;
