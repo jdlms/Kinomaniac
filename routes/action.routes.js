@@ -17,8 +17,13 @@ router.post("/film-details/:id", isLoggedIn, async (req, res) => {
     await newMovieAction.save();
     res.redirect("/films");
   } catch (error) {
-    res.render("error");
-    console.log(error);
+    //if film already exists, redirect same as if it was sucessfully added
+    if (error.code === 11000) {
+      res.redirect("/films");
+    } else {
+      res.render("error");
+      console.log(error);
+    }
   }
 });
 // let attempt =  await Movie.find({ filmId: req.params.id })
