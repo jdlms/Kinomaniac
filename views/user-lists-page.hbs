@@ -3,26 +3,21 @@
 <h4>Watchlist:</h4>
 <div id="watchlist-container">
 
-
-
-        {{#each data}}
-      <ul id="film-results-ul">
-          <li><a href="/film-details/{{this.id}}"><img
-                src="{{this.first_url_string}}{{this.poster_path}}"
-                alt="{{this.original_title}} poster"
-              />
-            </a>
-            <br />
-            <h6>Like</h6><h6>Watched</h6>
-           <form action="/films/watchlist/{{this.id}}/delete" method="POST">
-            <input type="submit" value="Remove">
-           </form>
-          </li>
-      </ul>
-    </div>
-        {{/each}}
- 
-
-
+  {{#each data}}
+    <ul id="film-results-ul">
+      <li><a href="/film-details/{{this.id}}"><img
+            src="{{this.first_url_string}}{{this.poster_path}}"
+            alt="{{this.original_title}} poster"
+          />
+        </a>
+        <br />
+        <h6>Like</h6><h6>Watched</h6>
+        <form action="/films/watchlist/{{this.id}}/delete" method="POST">
+          <input type="submit" value="Remove" />
+        </form>
+        <p>{{this.id}}</p>
+      </li>
+    </ul>
+  {{/each}}
 
 </div>

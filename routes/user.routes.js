@@ -10,7 +10,7 @@ router.get("/lists", isLoggedIn, async (req, res) => {
   try {
     const movies = await Movie.find({ userId: req.user.googleId });
 
-    // async map with Promise.all:
+    // async map with Promise.all:e
     idArray = [];
     movies.forEach((element) => idArray.push(element.filmId));
     let movieIdRequests = idArray.map(async (movieId) => await moviedb.movieInfo({ id: movieId }));
@@ -21,7 +21,6 @@ router.get("/lists", isLoggedIn, async (req, res) => {
     const configString = configCall.base_url + configCall.poster_sizes[1];
 
     data.map((movie) => (movie.first_url_string = configString));
-    console.log(data);
     res.render("user-lists-page", { docTitle: "Lists", data });
   } catch (error) {
     res.render("error");
@@ -31,7 +30,8 @@ router.get("/lists", isLoggedIn, async (req, res) => {
 
 router.post("/films/watchlist/:id/delete", async (req, res) => {
   try {
-    await Movie.findOneAndDelete({ movieId: req.params.id });
+    await Movie.findOneAndDelete({ filmId: req.params.id });
+    console.log(req.params.id);
     res.redirect("/lists");
   } catch (error) {
     res.render("error");
