@@ -1,13 +1,43 @@
-<div>
-      <h1> {{user.displayName}} is logged in </h1>
-
-      <form action="/logout" method="POST">
-        <button type="submit"> Logout </button>
-      </form>
-
-      <p>{{user.displayName}} likes {{user.movies}}.</p>
-      
-   
-          <img src="{{user.picture}}" width="150" height="150"/>
-
+<div class="container-fluid navbar-correction">
+  <div class="row user-profile">
+    <div class="col">
+      <img src="{{user.picture}}" class="profile-picture" />
+    <h2>Welcome, {{user.displayName}} </h2>
+    <a href="#">Edit your profile</a>
+    <form action="/logout" method="POST">
+      <button type="submit" class="btn btn-primary btn-warning"><i class="bi bi-box-arrow-right"></i>
+        Logout
+      </button>
+    </form>
+    <p>{{user.displayName}} likes {{user.movies}}.</p>
+  </div>
+  <div class="col" style="border-left: solid 1px #65696c; padding-left: 30px;">
+    <h3>What do you want to do today?</h3>
+    <ul>
+      <li>Check your watchlists</li>
+      <li>See you favourite movies</li>
+      <li>Create a new list</li>
+      <li>Check the fils that you already watched</li>
+      <li>Check your reviews</li>
+    </ul>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row align-items-center user-profile2">
+    <div class="col-5 user-profile3"><h3>Create a new list</h3><p>Since 9 + 4 = 13 &gt;
+        12, this 4-column-wide div gets wrapped onto a new line as one
+        contiguous unit.</p></div>
+    <div class="col-6 user-profile3"><h3>Watchlist</h3><p>Since 9 + 4 = 13 &gt;
+        12, this 4-column-wide div gets wrapped onto a new line as one
+        contiguous unit.</p></div>
+  </div>
+  <div class="container-fluid">
+  <div class="row align-items-center user-profile2">
+    <div class="col-6 user-profile3"><h3>My favourite movies of all time</h3><p>Since 9 + 4 = 13 &gt;
+        12, this 4-column-wide div gets wrapped onto a new line as one
+        contiguous unit.</p></div>
+    <div class="col-5 user-profile3"><h3>Films that you have already watched</h3><p>Since 9 + 4 = 13 &gt;
+        12, this 4-column-wide div gets wrapped onto a new line as one
+        contiguous unit.</p></div>
+  </div>
 </div>

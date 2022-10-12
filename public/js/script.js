@@ -8,7 +8,7 @@ document.addEventListener(
 
 // toggle login button and user
 
-const hideLoginBtn = document.querySelector("#login-btn");
+const UserInfoBar = document.querySelector("#user-info");
 
 hideLoginBtn.addEventListener("click", () => {
   hideBtn();
@@ -16,10 +16,9 @@ hideLoginBtn.addEventListener("click", () => {
 });
 
 function hideBtn() {
-  openPopup.classList.remove("active");
+  UserInfoBar.remove("active");
   overlayPopup.classList.remove("active");
   hideScores.classList.remove("hidden");
-  resetGame();
 }
 
 hideLoginBtn
