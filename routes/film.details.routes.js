@@ -11,13 +11,23 @@ router.get("/film-details/:id", async (req, res) => {
   try {
     const data = await moviedb.movieInfo({ id: req.params.id });
 
-    Movie.countDocuments({ filmId: req.params.id }, function (err, count) {
-      return count;
-    });
-
-    // if (count === 1) {
-    //   console.log("hi");
+    let dbEntry = await Movie.find({ filmId: req.params.id }, { review: 1 });
+    // if (dbEntry.length != 0) {
+    //   let dbReviews = dbEntry;
+    //   return dbReviews;
     // }
+
+    console.log(dbEntry);
+
+    // Movie.countDocuments({ filmId: req.params.id }, async function (err, count) {
+    //   if (count === 1) {
+    //     let dbEntry = async function () {
+    //       await Movie.find({ filmId: req.params.id });
+    //     };
+    //     return dbEntry;
+    //   }
+    //   console.log(dbEntry);
+    // });
 
     //construction of backdrop image url
     const config = await moviedb.configuration();
@@ -25,14 +35,14 @@ router.get("/film-details/:id", async (req, res) => {
     const configString = configCall.base_url + configCall.backdrop_sizes[1];
     data.first_url_string = configString;
 
-    res.render("film-details", { data });
+    res.render("film-details", { data, dbEntry });
   } catch (error) {}
 });
 
 router.post("/film/:id/review", async (req, res) => {
   try {
     //need middleware to check if movie exists in db
-    console.log(req.params.id);
+
     //if it doesn't already exist in db:
     const addMovieAndReveiw = new Movie({
       // userId: req.user.googleId,

@@ -14,10 +14,16 @@
 
     <button type="submit">Submit</button>
   </form>
-
-
-  <h6></h6>
-
 {{/with}}
+
+{{#if dbEntry}}
+  <h6>User Reviews:</h6>
+  {{#each dbEntry}}
+    <ul>
+      <li class="review-list-item">USER NAME:{{this.review}}</li>
+
+    </ul>
+  {{/each}}
+{{/if}}
 
 {{! to include in details page, from movieInfo api call: original_title, overview, poster_path, genres, tagline }}
