@@ -20,6 +20,7 @@ router.get("/films", async (req, res) => {
       docTitle: "Film Search",
       cssSheet: "film-search",
       data: data.results,
+      user: req.user,
     });
   } catch (error) {
     res.render("error");
@@ -42,6 +43,7 @@ router.get("/film-search", async (req, res) => {
     res.render("film-search-page", {
       docTitle: "Film Search",
       data: data.results,
+      user: req.user,
     });
     console.log(data);
   } catch (error) {

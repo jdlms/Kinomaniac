@@ -50,7 +50,7 @@ module.exports = (app) => {
     function (req, accessToken, refreshToken, profile, cb) {
       console.log(profile)
       User.findOrCreate({ googleId: profile.id }, {movies: "Seven"}, function (err, user) {
-        return cb(err, { googleId: profile.googleId, movies: user.movies, displayName: profile.displayName, picture: profile.photos[0].value });
+        return cb(err, { googleId: profile.id, movies: user.movies, displayName: profile.displayName, picture: profile.photos[0].value });
       });
     }
   ));
