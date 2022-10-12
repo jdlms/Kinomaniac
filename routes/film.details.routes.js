@@ -1,34 +1,25 @@
 const router = require("express").Router();
 const { MovieDb } = require("moviedb-promise");
+
+//middleware
 const { isLoggedIn } = require("../middlewares/auth.middlewares");
+const { user } = require("../middlewares/user.middlewares");
 
 //require models
 const { Movie } = require("../models/Movie.module");
 //api key
 const moviedb = new MovieDb(process.env.KEY);
 
-router.get("/film-details/:id", async (req, res) => {
+router.get("/film-details/:id", user, async (req, res) => {
   try {
     const data = await moviedb.movieInfo({ id: req.params.id });
 
     let dbEntry = await Movie.find({ filmId: req.params.id }, { review: 1 });
-    // if (dbEntry.length != 0) {
-    //   let dbReviews = dbEntry;
-    //   return dbReviews;
-    // }
 
-    console.log(dbEntry);
-
-    // Movie.countDocuments({ filmId: req.params.id }, async function (err, count) {
-    //   if (count === 1) {
-    //     let dbEntry = async function () {
-    //       await Movie.find({ filmId: req.params.id });
-    //     };
-    //     return dbEntry;
-    //   }
-    //   console.log(dbEntry);
-    // });
-
+    // let checkForCurrentUserReview = Movie.find({ googleId: req.user.googleId }, { review: 1 });
+    if (req.user) {
+      console.log(req.user.googleId);
+    }
     //construction of backdrop image url
     const config = await moviedb.configuration();
     const configCall = config.images;
