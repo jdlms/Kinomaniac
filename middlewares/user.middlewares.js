@@ -1,4 +1,5 @@
-function user(req, res, next) {
-  req.user ? next() : next();
+userStatusCheck = function(req, res, next) {
+ req.userStatus = (req.isAuthenticated() == false ? "vistor" : "user" );
+ next()
 }
-module.exports = { user };
+module.exports = { userStatusCheck };
