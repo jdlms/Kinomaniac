@@ -20,6 +20,7 @@
   </nav>
 </div>
 
+
 {{!-- {{#if data}}
 
   <div class="container-fluid">
@@ -70,6 +71,23 @@
           </div>
         </div>
       {{/each}}
+
+  {{#if data}}
+    <div id="film-results-container">
+      <ul id="film-results-ul">
+        {{#each data}}
+          <li><a href="/film-details/{{this.id}}"><img
+                src="{{this.first_url_string}}{{this.poster_path}}"
+                alt="{{this.original_title}} poster"
+              />
+            </a>
+            <br />
+            <h6>Like</h6><h6>Watched</h6>
+            <h6>Add</h6>
+          </li>
+        {{/each}}
+      </ul>
+
     </div>
   </div>
 
