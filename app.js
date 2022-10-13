@@ -42,6 +42,9 @@ app.use("/", actions);
 const user = require("./routes/user.routes");
 app.use("/", user);
 
+const reviews = require("./routes/review.routes");
+app.use("/", reviews);
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 
