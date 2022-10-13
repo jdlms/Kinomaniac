@@ -29,7 +29,8 @@ a {
   text-decoration: none;
 }
 
-a:hover {
+a:hover,
+.icon-films:hover {
   color: #ffc107;
 }
 

@@ -59,9 +59,10 @@ router.post("/film/:id/review", isLoggedIn, async (req, res) => {
   // }
 });
 
+//genres, cast, direct, streaming locations, similar films
+
 //to include in details page, from movieInfo api call: original_title, overview, poster_path, genres, tagline
 
 //info to include that is not in movieInfo api call: random image from film (?), cast, crew, details (studio, country, language, length), themes (extension of genre tag), where to watch
 
 module.exports = router;
-// review: req.body.name,

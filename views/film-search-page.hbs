@@ -21,34 +21,6 @@
 </div>
 
 
-{{!-- {{#if data}}
-
-  <div class="container-fluid">
-    <div class="row align-items-center row-films">
-      {{#each data}}
-        <div class="col-md-2 col-films col-sm-12">
-          <a href="/film-details/{{this.id}}"><img
-              class="image"
-              src="{{this.first_url_string}}{{this.poster_path}}"
-              alt="{{this.original_title}} poster"
-            />
-          </a>
-          <div class="overlay center">
-            <div class="action-icon-films">
-              <i class="bi bi-bookmark-plus icon-films"></i>
-              <i class="bi bi-star-fill icon-films"></i>
-              <i class="bi bi-share-fill icon-films"></i>
-            </div>
-            <a href="/film-details/{{this.id}}"><h6
-              >{{this.original_title}}</h6></a>
-          </div>
-        </div>
-      {{/each}}
-    </div>
-  </div>
-
-{{/if}} --}}
-
 {{#if data}}
   <div class="container-fluid navbar-correction">
     <div class="row align-items-center">
@@ -61,32 +33,16 @@
             />
           </a>
           <div class="overlay">
-            <div class="action-icon-films">
-              <a href="/film-details/{{this.id}}"><i class="bi bi-bookmark-plus icon-films"></i></a>
-              <a href="/film-details/{{this.id}}"><i class="bi bi-star-fill icon-films"></i></a>
-              <a href="/film-details/{{this.id}}"><i class="bi bi-share-fill icon-films" alt="share"></i></a>
+            <div class="action-icon-films" data-movie-id="{{this.id}}">
+              <i class="bi bi-bookmark-plus icon-films"></i>
+              <i class="bi bi-star-fill icon-films"></i>
+              <i class="bi bi-share-fill icon-films" alt="share"></i>
             </div>
           </div>
         </div>
       {{/each}}
 
-  {{!-- {{#if data}}
-    <div id="film-results-container">
-      <ul id="film-results-ul">
-        {{#each data}}
-          <li><a href="/film-details/{{this.id}}"><img
-                src="{{this.first_url_string}}{{this.poster_path}}"
-                alt="{{this.original_title}} poster"
-              />
-            </a>
-            <br />
-            <h6>Like</h6><h6>Watched</h6>
-            <h6>Add</h6>
-          </li>
-        {{/each}}
-      </ul>
-
-    </div>
-  </div> --}}
 
 {{/if}}
+
+<script src="/js/icon-events.js"></script>
