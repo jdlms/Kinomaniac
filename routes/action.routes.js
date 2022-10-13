@@ -1,12 +1,13 @@
 const router = require("express").Router();
 const { isLoggedIn } = require("../middlewares/auth.middlewares");
+
 const { MovieDb } = require("moviedb-promise");
 //api key
 const moviedb = new MovieDb(process.env.KEY);
 //require models
 const { Movie } = require("../models/Movie.module");
 
-//add title  to watch list
+//add title to watch list
 router.post("/film-details/:id", isLoggedIn, async (req, res) => {
   try {
     const newMovieAction = new Movie({
@@ -26,6 +27,5 @@ router.post("/film-details/:id", isLoggedIn, async (req, res) => {
     }
   }
 });
-
 
 module.exports = router;
