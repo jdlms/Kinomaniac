@@ -1,9 +1,12 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
 
 /* General stuff */
+
 body {
   width: 100vw;
   height: auto;
+  font-family: "Chivo", sans-serif;
+  background-color: #0e0e1d;
   background-color: #1d2022;
   color: whitesmoke;
 }
@@ -13,8 +16,11 @@ h1 {
   line-height: 1;
 }
 
-
 span {
+  color: whitesmoke;
+}
+
+.review-list-item {
   color: whitesmoke;
 }
 
@@ -34,6 +40,8 @@ a:hover {
 
 .navbar-brand {
   font-weight: 800;
+  font-size: x-large;
+  font-family: "Limelight", cursive;
 }
 
 .navbar-collapse {
@@ -134,7 +142,15 @@ a:hover {
   color: white;
 }
 
-/* User profile */
+li {
+  /* display: inline-block; */
+  white-space: nowrap;
+
+  list-style-position: inside;
+  /* border: 1px solid gray; */
+  /* border-radius: 25px; */
+  /* User profile */
+}
 
 .user-profile {
   background-color: #23292f !important;
@@ -185,6 +201,7 @@ a:hover {
 }
 
 
+/* Make the image to responsive */
 .img-container {
   position: relative;
 }
@@ -204,7 +221,7 @@ a:hover {
   background: rgba(0, 0, 0, 0.67);
   color: #f1f1f1;
   width: 73%;
-  transition: .5s ease;
+  transition: 0.5s ease;
   opacity: 0;
   color: white;
   font-size: 20px;
@@ -215,7 +232,6 @@ a:hover {
 .img-container:hover .overlay {
   opacity: 1;
 }
-
 
 #film-search-container {
   width: 95vw;
