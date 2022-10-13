@@ -156,7 +156,6 @@ a:hover {
   background-color: #23292f !important;
   padding: 30px 20px;
   border-radius: 8px;
-  height: 300px;
 }
 
 .col-6 {
@@ -186,7 +185,6 @@ a:hover {
 }
 
 
-/* Make the image to responsive */
 .img-container {
   position: relative;
 }
@@ -198,13 +196,12 @@ a:hover {
   height: auto;
 }
 
-/* The overlay effect - lays on top of the container and over the image */
 .overlay {
   position: absolute;
   top: 40%;
   overflow: hidden;
   background: rgb(0, 0, 0);
-  background: rgba(0, 0, 0, 0.67); /* Black see-through */
+  background: rgba(0, 0, 0, 0.67);
   color: #f1f1f1;
   width: 73%;
   transition: .5s ease;
@@ -215,7 +212,6 @@ a:hover {
   text-align: center;
 }
 
-/* When you mouse over the container, fade in the overlay title */
 .img-container:hover .overlay {
   opacity: 1;
 }
@@ -227,4 +223,13 @@ a:hover {
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
+}
+
+
+/* responsive design */
+
+@media (max-width: 768px) {
+  .col {
+    width: 100%;
+  }
 }

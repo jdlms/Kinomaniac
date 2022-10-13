@@ -8,6 +8,7 @@ router.get("/film-details/:id", async (req, res) => {
   try {
     const data = await moviedb.movieInfo({ id: req.params.id });
     console.log(data.original_language);
+    console.log(data);
 
     res.render("film-details", { data });
   } catch (error) {}
