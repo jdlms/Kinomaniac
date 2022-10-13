@@ -21,6 +21,8 @@ const movie_schema = new mongoose.Schema({
   },
 });
 
+movie_schema.index({ userId: 1, filmId: 1 }, { unique: true });
+
 const Movie = mongoose.model("movie", movie_schema);
 
 module.exports = { Movie };

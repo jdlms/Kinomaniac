@@ -10,12 +10,11 @@ const { Movie } = require("../models/Movie.module");
 //add title to watch list
 router.post("/film-details/:id", isLoggedIn, async (req, res) => {
   try {
-    const newMovieAction = new Movie({
-      userId: req.user.googleId,
-      filmId: req.params.id,
-      watchList: true,
-    });
-    await newMovieAction.save();
+    await Movie.findOneAndUpdate(
+      { userId: req.user.googleId, filmId: req.params.id },
+      { watchList: true },
+      { upsert: true }
+    );
     res.redirect("/films");
   } catch (error) {
     //if film already exists, redirect same as if it was sucessfully added
