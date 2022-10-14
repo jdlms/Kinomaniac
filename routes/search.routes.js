@@ -22,7 +22,7 @@ router.get("/films", async (req, res) => {
     });
   } catch (error) {
     res.render("error");
-    console.log("The error while searching artists occurred: ", error);
+    console.log("This error occurred: ", error);
   }
 });
 
