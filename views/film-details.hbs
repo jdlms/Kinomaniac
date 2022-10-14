@@ -7,14 +7,16 @@
   <form action="/film-details/{{id}}" method="POST">
     <button type="submit">Add to watch list</button>
   </form>
+{{/with}}
 
+{{#if viewReviewBox}}
   <h6>Review:</h6>
-  <form action="/film/{{id}}/review" method="POST">
+  <form action="/film/{{data.id}}/review" method="POST">
     <textarea class="form-control" id="review" name="review" rows="3"></textarea>
 
     <button type="submit">Submit</button>
   </form>
-{{/with}}
+{{/if}}
 
 {{#if dbEntry}}
   <h6>User Reviews:</h6>

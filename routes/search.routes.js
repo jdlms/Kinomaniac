@@ -16,7 +16,7 @@ router.get("/films", async (req, res) => {
     data.results.map((movie) => (movie.first_url_string = configString));
 
     res.render("film-search-page", {
-      docTitle: "Film Search",
+      docTitle: "Kinomaniac - Films",
       data: data.results,
       user: req.user,
     });
