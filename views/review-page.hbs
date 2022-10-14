@@ -7,9 +7,9 @@
 {{/with}}
 
 {{#with userReview}}
-  <form action="/film/{{id}}/edit" method="POST">
+  <form action="/film/{{filmId}}/edit" method="POST">
     <textarea class="form-control" id="review" name="review" rows="3">{{review}}</textarea>
 
-    <button type="submit">Submit</button>
+    <button type="submit">Save</button>
   </form>
 {{/with}}

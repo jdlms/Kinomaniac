@@ -23,8 +23,6 @@ router.get("/", async (req, res, next) => {
     const randomMovieIndex = Math.floor(Math.random() * data.results.length);
     const randomMovie = data.results[randomMovieIndex];
 
-    console.log(randomMovie);
-
     res.render("index", {
       docTitle: "Kinomaniacs",
       data: data.results,
