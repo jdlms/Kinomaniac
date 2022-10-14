@@ -14,7 +14,7 @@ router.get("/", async (req, res, next) => {
     const configString = configCall.base_url + configCall.poster_sizes[2];
     //map img link/string into each movie object
     data.results.map((movie) => (movie.first_url_string = configString));
-
+    console.log(data);
     console.log(data);
     res.render("index", {
       docTitle: "Film Search",
