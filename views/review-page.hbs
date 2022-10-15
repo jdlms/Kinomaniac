@@ -1,3 +1,15 @@
 <h1>Test!</h1>
 <h1>Test!</h1>
 <h1>Test!</h1>
+
+{{#with data}}
+  <h3>{{original_title}}</h3>
+{{/with}}
+
+{{#with userReview}}
+  <form action="/film/{{id}}/edit" method="POST">
+    <textarea class="form-control" id="review" name="review" rows="3">{{review}}</textarea>
+
+    <button type="submit">Submit</button>
+  </form>
+{{/with}}

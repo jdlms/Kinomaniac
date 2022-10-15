@@ -14,17 +14,25 @@ router.get("/", async (req, res, next) => {
     const configString = configCall.base_url + configCall.poster_sizes[2];
     //map img link/string into each movie object
     data.results.map((movie) => (movie.first_url_string = configString));
+    console.log(config);
+    //get larger image for header
+    const largerImg = configCall.base_url + configCall.backdrop_sizes[2];
+    data.results.map((movie) => (movie.large_img_url_string = largerImg));
 
-    console.log(data);
+    //get random image from trending movies
+    const randomMovieIndex = Math.floor(Math.random() * data.results.length);
+    const randomMovie = data.results[randomMovieIndex];
+
+    console.log(randomMovie);
+
     res.render("index", {
-      docTitle: "Film Search",
-      cssSheet: "film-search",
+      docTitle: "Kinomaniacs",
       data: data.results,
-      user: req.user,
+      randomMovie,
     });
   } catch (error) {
     res.render("error");
-    console.log("The error while searching artists occurred: ", error);
+    console.log("This error occurred: ", error);
   }
 });
 

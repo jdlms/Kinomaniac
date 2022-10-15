@@ -18,11 +18,11 @@ router.get("/films", async (req, res) => {
     res.render("film-search-page", {
       docTitle: "Film Search",
       data: data.results,
-      user: req.user,
+
     });
   } catch (error) {
     res.render("error");
-    console.log("The error while searching artists occurred: ", error);
+    console.log("This error occurred: ", error);
   }
 });
 
@@ -41,7 +41,6 @@ router.get("/film-search", async (req, res) => {
     res.render("film-search-page", {
       docTitle: "Film Search",
       data: data.results,
-      user: req.user,
     });
     console.log(data);
   } catch (error) {

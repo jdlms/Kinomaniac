@@ -29,7 +29,8 @@ a {
   text-decoration: none;
 }
 
-a:hover {
+a:hover,
+.icon-films:hover {
   color: #ffc107;
 }
 
@@ -112,6 +113,7 @@ a:hover {
   align-items: center;
 }
 .header-title {
+  position: absolute;
   text-align: center;
   max-width: 720px;
   display: flex;
@@ -125,7 +127,7 @@ a:hover {
 }
 
 .background-image {
-  background-image: url("https://www.thestreambible.com/wp-content/uploads/2022/01/Troy-F-1024x561.jpg");
+  /* background-image: url("https://www.thestreambible.com/wp-content/uploads/2022/01/Troy-F-1024x561.jpg"); */
   background-position: center;
   background-size: cover;
   height: 700px;
