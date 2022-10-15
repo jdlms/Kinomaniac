@@ -7,9 +7,10 @@ document.addEventListener(
     icons.forEach((iconContainer) => {
       const [watchilstIcon, starIcon] = iconContainer.children;
       watchilstIcon.addEventListener("click", () => {
-        fetch("/film-details/:id", {
+        fetch(`/film-details/${iconContainer.dataset.movieId}`, {
           method: "POST",
-          body: { filmId: iconContainer.dataset.movieId, watchList: true },
+        }).then(function (response) {
+          console.log(response);
         });
 
         console.log("watchlistIcon", iconContainer.dataset.movieId);
