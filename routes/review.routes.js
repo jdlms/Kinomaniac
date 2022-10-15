@@ -12,9 +12,18 @@ const { route } = require("./user.routes");
 const moviedb = new MovieDb(process.env.KEY);
 
 //view single review:
-router.get("/film/:id/review", async (req, res) => {
-  const data = await moviedb.movieInfo({ id: req.params.id });
-  res.render("review-page", data);
+router.get("/film/:id/review", isLoggedIn, async (req, res) => {
+  try {
+    const data = await moviedb.movieInfo({ id: req.params.id });
+    let userReviewArray = await Movie.find({ userId: req.user.googleId, filmId: req.params.id });
+    let userReview = userReviewArray[0];
+    console.log(userReview);
+    console.log(data);
+    res.render("review-page", { data, userReview });
+  } catch (error) {
+    res.render("error");
+    console.log(error);
+  }
 });
 
 module.exports = router;
