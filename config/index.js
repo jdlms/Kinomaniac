@@ -38,13 +38,13 @@ module.exports = (app) => {
   const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 
   const GoogleStrategy = require("passport-google-oauth20").Strategy;
-
+  console.log(process.env.GOOGLE_CALLBACK_URL);
   passport.use(
     new GoogleStrategy(
       {
         clientID: GOOGLE_CLIENT_ID,
         clientSecret: GOOGLE_CLIENT_SECRET,
-        callbackURL: "/auth/google/callback",
+        callbackURL: process.env.GOOGLE_CALLBACK_URL,
         passReqToCallback: true,
       },
       function (req, accessToken, refreshToken, profile, cb) {
