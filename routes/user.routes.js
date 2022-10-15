@@ -37,7 +37,7 @@ router.get("/lists", isLoggedIn, async (req, res) => {
     watchlistData.map((movie) => (movie.first_url_string = configString));
     reviewsData.map((movie) => (movie.first_url_string = configString));
 
-    res.render("user-lists-page", { docTitle: "Lists", watchlistData, reviewsData });
+    res.render("user-lists-page", { docTitle: "Kinomaniac - Lists", watchlistData, reviewsData });
   } catch (error) {
     res.render("error");
     console.log(error);
