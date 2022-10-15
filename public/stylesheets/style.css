@@ -12,7 +12,7 @@ body {
 }
 
 h1 {
-  font-size: 56px;
+  font-size: 2.7rem;
   line-height: 1;
 }
 
@@ -34,6 +34,9 @@ a:hover {
 }
 
 /* Navigation */
+
+
+
 .navbar {
   padding: 0 30px;
 }
@@ -99,10 +102,6 @@ a:hover {
   font-family: inherit;
   font-size: inherit;
 }
-
-/* .hidden {
-  display: none;
-} */
 
 /* Header with CTA */
 
@@ -233,14 +232,40 @@ li {
   opacity: 1;
 }
 
-#film-search-container {
-  width: 95vw;
+/* Single film view */
+
+.image-single-film {
+  display: block;
+  border-radius: 8px;
+  width: 80%;
+  height: auto;
+  max-height: 700px;
+}
+.single-film {
+  position: relative;
+  color: white;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-end;
+  justify-content: center;
 }
 
+.main-info-film {
+  display: flex;
+  flex-direction: row;
+}
+
+.bottom-left {
+  position: absolute;
+  bottom: -50px;
+  background-color: #23292f;
+  width: 80%;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.hidden {
+  display: none;
+}
 
 /* responsive design */
 
