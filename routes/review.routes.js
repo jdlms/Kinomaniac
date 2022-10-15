@@ -15,9 +15,6 @@ const moviedb = new MovieDb(process.env.KEY);
 router.get("/film/:id/review", isLoggedIn, async (req, res) => {
   try {
     const data = await moviedb.movieInfo({ id: req.params.id });
-    // const [{ test }] = data;
-    // console.log(test);
-    console.log(data);
     let userReviewArray = await Movie.find({ userId: req.user.googleId, filmId: req.params.id });
     let userReview = userReviewArray[0];
 

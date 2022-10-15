@@ -13,16 +13,25 @@ const moviedb = new MovieDb(process.env.KEY);
 //view film details:
 router.get("/film-details/:id", async (req, res) => {
   try {
-    //api query
+    //api queries
     const data = await moviedb.movieInfo({ id: req.params.id });
+    const data_credits = await moviedb.movieCredits({ id: req.params.id });
+    const data_streaming = await moviedb.movieWatchProviders({ id: req.params.id });
     //dbquery
     let dbEntry = await Movie.find({ filmId: req.params.id }, { review: 1 });
-
+    console.log(data_streaming);
     let viewReviewBox = true;
     if (dbEntry.length > 0) {
       viewReviewBox = false;
     }
-    console.log(viewReviewBox);
+
+    //release year
+    let releaseYear = data.release_date.slice(0, 4);
+    data.releaseYear = releaseYear;
+
+    //cast and director
+    const cast = data_credits.cast.slice(0, 6);
+    const [director] = data_credits.crew.filter((movie) => movie.job === "Director");
 
     //construction of backdrop image url
     const config = await moviedb.configuration();
@@ -30,7 +39,7 @@ router.get("/film-details/:id", async (req, res) => {
     const configString = configCall.base_url + configCall.backdrop_sizes[1];
     data.first_url_string = configString;
 
-    res.render("film-details", { data, dbEntry, viewReviewBox });
+    res.render("film-details", { data, dbEntry, cast, director, viewReviewBox });
   } catch (error) {
     res.render("error");
     console.log(error);

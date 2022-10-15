@@ -1,13 +1,33 @@
 {{#with data}}
   <img src="{{first_url_string}}{{backdrop_path}}" alt="backdrop image" />
   <h1>{{original_title}}</h1>
+  <h6>{{releaseYear}}</h6>
+  {{#with ../director}}
+    <p>Directed by {{this.name}}</p>
+  {{/with}}
+
   <span>{{tagline}}</span>
   <p>{{overview}}</p>
 
   <form action="/film-details/{{id}}" method="POST">
     <button type="submit">Add to watch list</button>
   </form>
+
+  Genres:
+  <ul>
+    {{#each genres}}
+      <li>{{this.name}}</li>
+    {{/each}}
+  </ul>
 {{/with}}
+
+Cast:
+
+{{#each cast}}
+  <ul>
+    <li>{{this.name}}</li>
+  </ul>
+{{/each}}
 
 {{#if viewReviewBox}}
   <h6>Review:</h6>
