@@ -8,9 +8,6 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    toWatchList: {
-      type: Array,
-    },
     //drafting:
     //   likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Like" }],
     //   review: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }],

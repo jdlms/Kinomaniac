@@ -27,7 +27,6 @@ router.get("/", async (req, res, next) => {
       docTitle: "Kinomaniacs",
       data: data.results,
       randomMovie,
-      user: req.user,
     });
   } catch (error) {
     res.render("error");
