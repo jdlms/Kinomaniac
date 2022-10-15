@@ -1,28 +1,20 @@
-// We reuse this import in order to have access to the `body` property in requests
-const express = require("express");
-
-// ℹ️ Responsible for the messages you see in the terminal as requests are coming in
-// https://www.npmjs.com/package/morgan
-const logger = require("morgan");
-
-//dotenv
 require("dotenv").config();
-
-// ℹ️ Needed when we deal with cookies (we will when dealing with authentication)
-// https://www.npmjs.com/package/cookie-parser
+const express = require("express");
+const logger = require("morgan");
 const cookieParser = require("cookie-parser");
-
-// ℹ️ Serves a custom favicon on each request
-// https://www.npmjs.com/package/serve-favicon
 const favicon = require("serve-favicon");
-
 const session = require("express-session");
+const { MONGO_URI } = require("../db");
+const MongoDBStore = require("connect-mongodb-session")(session);
 const passport = require("passport");
 const User = require("../models/User.model");
-// ℹ️ global package used to `normalize` paths amongst different operating systems
-// https://www.npmjs.com/package/path
 const path = require("path");
 
+//DBStore
+const store = new MongoDBStore({
+  uri: MONGO_URI,
+  collection: "sessions",
+});
 // Middleware configuration
 module.exports = (app) => {
   // In development environment the app logs
@@ -71,7 +63,18 @@ module.exports = (app) => {
     done(null, user);
   });
 
-  app.use(session({ secret: "holaamigo", resave: false, saveUninitialized: true }));
+  app.use(
+    session({
+      secret: process.env.SESSION_SECRET,
+      cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+      },
+      store: store,
+      resave: true,
+      saveUninitialized: true,
+    })
+  );
+
   app.use(passport.initialize()); // init passport on every route call
   app.use(passport.session()); //allow passport to use "express-session"
 
