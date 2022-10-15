@@ -31,6 +31,7 @@ module.exports = (app) => {
 
   const GoogleStrategy = require("passport-google-oauth20").Strategy;
   console.log(process.env.GOOGLE_CALLBACK_URL);
+
   passport.use(
     new GoogleStrategy(
       {
@@ -41,13 +42,13 @@ module.exports = (app) => {
       },
       function (req, accessToken, refreshToken, profile, cb) {
         // console.log(profile);
-        User.findOrCreate({ googleId: profile.id }, { movies: "Seven" }, function (err, user) {
-          return cb(err, {
+        User.findOrCreate({ googleId: profile.id }, function (err, user) {
+          const googleUser = {
             googleId: profile.id,
-            movies: user.movies,
             displayName: profile.displayName,
             picture: profile.photos[0].value,
-          });
+          };
+          return cb(err, googleUser);
         });
       }
     )
@@ -87,4 +88,9 @@ module.exports = (app) => {
 
   // Handles access to the favicon
   app.use(favicon(path.join(__dirname, "..", "public", "images", "favicon.ico")));
+
+  app.use((req, res, next) => {
+    res.locals.user = req.user;
+    next();
+  });
 };
