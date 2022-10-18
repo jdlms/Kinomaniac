@@ -13,6 +13,11 @@
     <button type="submit">Add to watch list</button>
   </form>
 
+ <form action="/film-details/{{id}}/like" method="POST">
+    <button type="submit">Like</button>
+  </form>
+
+
   Genres:
   <ul>
     {{#each genres}}
@@ -40,7 +45,7 @@ Cast:
 
 {{#if dbEntry}}
   <h6>User Reviews:</h6>
-  {{#each dbEntry}}
+  {{#each this.review}}
     <ul>
       <li class="review-list-item">USER NAME:{{this.review}}</li>
 

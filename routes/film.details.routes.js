@@ -1,13 +1,8 @@
 const router = require("express").Router();
 const { MovieDb } = require("moviedb-promise");
-
-//middleware
-const { isLoggedIn } = require("../middlewares/auth.middlewares");
+// const { isLoggedIn } = require("../middlewares/auth.middlewares");
 const { userStatusCheck } = require("../middlewares/user.middlewares");
-
-//require models
 const { Movie } = require("../models/Movie.module");
-//api key
 const moviedb = new MovieDb(process.env.KEY);
 
 //view film details:
@@ -20,8 +15,9 @@ router.get("/film-details/:id", async (req, res) => {
     //dbquery
     let dbEntry = await Movie.find({ filmId: req.params.id }, { review: 1 });
     console.log(data_streaming);
+
     let viewReviewBox = true;
-    if (dbEntry.length > 0) {
+    if (dbEntry.reviewed === "true") {
       viewReviewBox = false;
     }
 
@@ -44,34 +40,6 @@ router.get("/film-details/:id", async (req, res) => {
     res.render("error");
     console.log(error);
   }
-});
-
-//post review:
-router.post("/film/:id/review", isLoggedIn, async (req, res) => {
-  // if (req.userStatus === "user") {
-  try {
-    await Movie.findOneAndUpdate(
-      { userId: req.user.googleId, filmId: req.params.id },
-      {
-        userId: req.user.googleid,
-        filmId: req.params.id,
-        watchList: false,
-        review: req.body.review,
-        reviewed: true,
-      },
-      { upsert: true }
-    );
-
-    res.redirect("back");
-  } catch (error) {
-    res.render("error");
-  }
-  // } else {
-  //   try {
-  //     res.redirect("back");
-  //   } catch (error) {}
-  //   res.render("error");
-  // }
 });
 
 //genres, cast, direct, streaming locations, similar films
