@@ -1,13 +1,8 @@
 const router = require("express").Router();
 const { MovieDb } = require("moviedb-promise");
-
-//middleware
-const { isLoggedIn } = require("../middlewares/auth.middlewares");
+// const { isLoggedIn } = require("../middlewares/auth.middlewares");
 const { userStatusCheck } = require("../middlewares/user.middlewares");
-
-//require models
 const { Movie } = require("../models/Movie.module");
-//api key
 const moviedb = new MovieDb(process.env.KEY);
 
 //view film details:
@@ -20,8 +15,9 @@ router.get("/film-details/:id", async (req, res) => {
     //dbquery
     let dbEntry = await Movie.find({ filmId: req.params.id }, { review: 1 });
     console.log(data_streaming);
+
     let viewReviewBox = true;
-    if (dbEntry.length > 0) {
+    if (dbEntry.reviewed === "true") {
       viewReviewBox = false;
     }
 
@@ -45,8 +41,6 @@ router.get("/film-details/:id", async (req, res) => {
     console.log(error);
   }
 });
-
- 
 
 //genres, cast, direct, streaming locations, similar films
 

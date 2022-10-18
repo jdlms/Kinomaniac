@@ -19,6 +19,9 @@ const movie_schema = new mongoose.Schema({
   reviewed: {
     type: Boolean,
   },
+  liked: {
+    type: Boolean,
+  },
 });
 
 movie_schema.index({ userId: 1, filmId: 1 }, { unique: true });
