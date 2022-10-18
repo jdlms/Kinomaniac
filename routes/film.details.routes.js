@@ -11,10 +11,11 @@ router.get("/film-details/:id", async (req, res) => {
     //api queries
     const data = await moviedb.movieInfo({ id: req.params.id });
     const data_credits = await moviedb.movieCredits({ id: req.params.id });
-    const data_streaming = await moviedb.movieWatchProviders({ id: req.params.id });
+    // const data_streaming = await moviedb.movieWatchProviders({ id: req.params.id });
     //dbquery
-    let dbEntry = await Movie.find({ filmId: req.params.id }, { review: 1 });
-    console.log(data_streaming);
+    let dbEntry = await Movie.find({ filmId: req.params.id }, { review: 1, reviewed: 1 });
+    let [reviewEntry] = dbEntry;
+    console.log(reviewEntry);
 
     let viewReviewBox = true;
     if (dbEntry.reviewed === "true") {
@@ -35,7 +36,7 @@ router.get("/film-details/:id", async (req, res) => {
     const configString = configCall.base_url + configCall.backdrop_sizes[1];
     data.first_url_string = configString;
 
-    res.render("film-details", { data, dbEntry, cast, director, viewReviewBox });
+    res.render("film-details", { data, reviewEntry, cast, director, viewReviewBox });
   } catch (error) {
     res.render("error");
     console.log(error);

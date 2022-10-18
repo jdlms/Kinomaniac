@@ -43,12 +43,11 @@ Cast:
   </form>
 {{/if}}
 
-{{#if dbEntry}}
+{{#if reviewEntry}}
   <h6>User Reviews:</h6>
-  {{#each this.review}}
+  {{#each reviewEntry.review}}
     <ul>
-      <li class="review-list-item">USER NAME:{{this.review}}</li>
-
+      <li class="review-list-item">USER NAME:{{reviewEntry.review}}</li>
     </ul>
   {{/each}}
 {{/if}}
