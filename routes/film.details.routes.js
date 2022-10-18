@@ -46,33 +46,7 @@ router.get("/film-details/:id", async (req, res) => {
   }
 });
 
-//post review:
-router.post("/film/:id/review", isLoggedIn, async (req, res) => {
-  // if (req.userStatus === "user") {
-  try {
-    await Movie.findOneAndUpdate(
-      { userId: req.user.googleId, filmId: req.params.id },
-      {
-        userId: req.user.googleid,
-        filmId: req.params.id,
-        watchList: false,
-        review: req.body.review,
-        reviewed: true,
-      },
-      { upsert: true }
-    );
-
-    res.redirect("back");
-  } catch (error) {
-    res.render("error");
-  }
-  // } else {
-  //   try {
-  //     res.redirect("back");
-  //   } catch (error) {}
-  //   res.render("error");
-  // }
-});
+ 
 
 //genres, cast, direct, streaming locations, similar films
 

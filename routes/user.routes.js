@@ -44,16 +44,5 @@ router.get("/lists", isLoggedIn, async (req, res) => {
   }
 });
 
-//delete film from watchlist:
-router.post("/films/watchlist/:id/delete", async (req, res) => {
-  try {
-    await Movie.findOneAndDelete({ filmId: req.params.id });
-    console.log(req.params.id);
-    res.redirect("/lists");
-  } catch (error) {
-    res.render("error");
-    console.log(error);
-  }
-});
 
 module.exports = router;
