@@ -14,6 +14,7 @@
   </div>
   {{/with}}
 
+
 {{#if data}}
   <div class="container-fluid navbar-correction">
     <div class="row align-items-center">
@@ -25,15 +26,18 @@
               alt="{{this.original_title}} poster"
             />
           </a>
+          {{#if ../notLoggedIn}}
           <div class="overlay">
-            <div class="action-icon-films" data-movie-id="{{this.id}}">
+            <div class="action-icon-films" data-movie-id="{{id}}">
               <i class="bi bi-bookmark-plus icon-films"></i>
               <i class="bi bi-star-fill icon-films"></i>
-              {{!-- <i class="bi bi-share-fill icon-films" alt="share"></i> --}}
             </div>
           </div>
+          {{/if}}
         </div>
       {{/each}}
 {{/if}}
+
+
 
 <script src="/js/icon-events.js"></script>
