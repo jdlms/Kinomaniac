@@ -46,13 +46,22 @@ router.post("/film-details/:id/like", isLoggedIn, async (req, res) => {
     );
     res.redirect("/films");
   } catch (error) {
-    //if film already exists, redirect same as if it was sucessfully added
-    if (error.code === 11000) {
-      res.redirect("/films");
-    } else {
-      res.render("error");
-      console.log(error);
-    }
+    res.render("error");
+    console.log(error);
+  }
+});
+
+router.post("/film-details/:id/unlike", isLoggedIn, async (req, res) => {
+  try {
+    await Movie.findOneAndUpdate(
+      { userId: req.user.googleId, filmId: req.params.id },
+      { liked: false },
+      { upsert: true }
+    );
+    res.redirect("/films");
+  } catch (error) {
+    res.render("error");
+    console.log(error);
   }
 });
 
