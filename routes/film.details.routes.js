@@ -11,16 +11,22 @@ router.get("/film-details/:id", async (req, res) => {
     //api queries
     const data = await moviedb.movieInfo({ id: req.params.id });
     const data_credits = await moviedb.movieCredits({ id: req.params.id });
-    // const data_streaming = await moviedb.movieWatchProviders({ id: req.params.id });
     //dbquery
-    let dbEntry = await Movie.find({ filmId: req.params.id }, { review: 1, reviewed: 1 });
-    let [reviewEntry] = dbEntry;
-    console.log(reviewEntry);
-
+    let dbEntry = await Movie.find({ filmId: req.params.id });
+    let reviewEntries = await Movie.find({ filmId: req.params.id }, { review: 1, reviewed: true });
+    //if user has reviewed movie, if so do not show review text box
     let viewReviewBox = true;
-    if (dbEntry.reviewed === "true") {
-      viewReviewBox = false;
+    for (let movie of dbEntry) {
+      if (movie.userId === req.user.googleId && movie.reviewed === true) viewReviewBox = false;
     }
+    console.log(reviewEntries);
+    let userReviewsHeader = false;
+    for (let movie of reviewEntries) {
+      if (movie.reviewed === true) userReviewsHeader = true;
+    }
+
+    console.log(reviewEntries);
+    console.log(userReviewsHeader);
 
     //release year
     let releaseYear = data.release_date.slice(0, 4);
@@ -36,7 +42,7 @@ router.get("/film-details/:id", async (req, res) => {
     const configString = configCall.base_url + configCall.backdrop_sizes[1];
     data.first_url_string = configString;
 
-    res.render("film-details", { data, reviewEntry, cast, director, viewReviewBox });
+    res.render("film-details", { data, dbEntry, cast, director, viewReviewBox, userReviewsHeader });
   } catch (error) {
     res.render("error");
     console.log(error);

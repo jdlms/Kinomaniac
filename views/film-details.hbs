@@ -43,13 +43,13 @@ Cast:
   </form>
 {{/if}}
 
-{{#if reviewEntry}}
+{{#if userReviewsHeader}}
   <h6>User Reviews:</h6>
-  {{#each reviewEntry.review}}
+  {{#each dbEntry}}
     <ul>
-      <li class="review-list-item">USER NAME:{{reviewEntry.review}}</li>
+      <li class="review-list-item">USER NAME:{{this.review}}</li>
     </ul>
   {{/each}}
-{{/if}}
+  {{/if}}
 
 {{! to include in details page, from movieInfo api call: original_title, overview, poster_path, genres, tagline }}

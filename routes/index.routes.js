@@ -8,7 +8,8 @@ const moviedb = new MovieDb(process.env.KEY);
 router.get("/", async (req, res, next) => {
   try {
     const data = await moviedb.trending({ media_type: "movie", time_window: "week" });
-
+    const data_current = await moviedb.movieNowPlaying({ page: 1, region: "DE" });
+    console.log(data_current);
     const config = await moviedb.configuration();
     const configCall = config.images;
     const configString = configCall.base_url + configCall.poster_sizes[2];
