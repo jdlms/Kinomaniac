@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { MovieDb } = require("moviedb-promise");
+const { UserMovieData } = require("../models/UserMovieData.module");
 const moviedb = new MovieDb(process.env.KEY);
 
 /* GET home page */
@@ -20,16 +21,18 @@ router.get("/", async (req, res, next) => {
     const randomMovieIndex = Math.floor(Math.random() * data.results.length);
     const randomMovie = data.results[randomMovieIndex];
 
-    let notLoggedIn = false;
-    if (req.isAuthenticated()) {
-      notLoggedIn = true;
-    }
-    console.log(notLoggedIn);
+    const usermoviedata = await UserMovieData.find({ userId: req.user?.googleId });
+    const userMoviesById = usermoviedata.reduce((acc, val) => {
+      acc[val.filmId] = val;
+      return acc;
+    }, {});
+    console.log(userMoviesById);
+
     res.render("index", {
       docTitle: "Kinomaniacs",
       data: data.results,
       randomMovie,
-      notLoggedIn,
+      userMoviesById,
     });
   } catch (error) {
     res.render("error");
