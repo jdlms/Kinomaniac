@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { isLoggedIn } = require("../middlewares/auth.middlewares");
 const passport = require("passport");
-const { Movie } = require("../models/Movie.module");
+const { UserMovieData } = require("../models/UserMovieData.module");
 
 router.get("/login", function (req, res, next) {
   res.render("auth/login");
@@ -21,9 +21,9 @@ router.get("/auth/google/callback", passportMiddleware);
 
 //Define the Protected Route, by using the "checkAuthenticated" function defined above as middleware
 router.get("/profile", isLoggedIn, async (req, res) => {
-  const reviewCount = await Movie.where({ reviewed: true }).countDocuments();
-  const watchlistCount = await Movie.where({ watchList: true }).countDocuments();
-  const likedCount = await Movie.where({ liked: true }).countDocuments();
+  const reviewCount = await UserMovieData.where({ reviewed: true }).countDocuments();
+  const watchlistCount = await UserMovieData.where({ watchList: true }).countDocuments();
+  const likedCount = await UserMovieData.where({ liked: true }).countDocuments();
   res.render("auth/profile", { user: req.user, reviewCount, watchlistCount, likedCount });
 });
 

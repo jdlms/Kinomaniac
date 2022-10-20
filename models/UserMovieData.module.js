@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const movie_schema = new mongoose.Schema({
+const user_movie_data_schema = new mongoose.Schema({
   userId: {
     type: String,
     required: true,
@@ -24,8 +24,8 @@ const movie_schema = new mongoose.Schema({
   },
 });
 
-movie_schema.index({ userId: 1, filmId: 1 }, { unique: true });
+user_movie_data_schema.index({ userId: 1, filmId: 1 }, { unique: true });
 
-const Movie = mongoose.model("movie", movie_schema);
+const UserMovieData = mongoose.model("usermoviedata", user_movie_data_schema);
 
-module.exports = { Movie };
+module.exports = { UserMovieData: UserMovieData };

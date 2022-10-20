@@ -5,14 +5,20 @@ const { isLoggedIn } = require("../middlewares/auth.middlewares");
 //api key
 const moviedb = new MovieDb(process.env.KEY);
 //require models
-const { Movie } = require("../models/Movie.module");
+const { UserMovieData } = require("../models/UserMovieData.module");
 
 //view user lists:
 router.get("/lists", isLoggedIn, async (req, res) => {
   try {
-    const watchlistMovies = await Movie.find({ userId: req.user.googleId, watchList: "true" });
-    const reviewedMovies = await Movie.find({ userId: req.user.googleId, reviewed: "true" });
-    const likedMovies = await Movie.find({ userId: req.user.googleId, liked: "true" });
+    const watchlistMovies = await UserMovieData.find({
+      userId: req.user.googleId,
+      watchList: "true",
+    });
+    const reviewedMovies = await UserMovieData.find({
+      userId: req.user.googleId,
+      reviewed: "true",
+    });
+    const likedMovies = await UserMovieData.find({ userId: req.user.googleId, liked: "true" });
 
     // watchlist async map with Promise.all
     let watchlistIdArray = [];

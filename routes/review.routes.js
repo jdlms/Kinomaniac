@@ -3,10 +3,9 @@ const { MovieDb } = require("moviedb-promise");
 
 //middleware
 const { isLoggedIn } = require("../middlewares/auth.middlewares");
-const { userStatusCheck } = require("../middlewares/user.middlewares");
 
 //require models
-const { Movie } = require("../models/Movie.module");
+const { UserMovieData } = require("../models/UserMovieData.module");
 const { route } = require("./user.routes");
 //api key
 const moviedb = new MovieDb(process.env.KEY);
@@ -15,7 +14,10 @@ const moviedb = new MovieDb(process.env.KEY);
 router.get("/film/:id/review", isLoggedIn, async (req, res) => {
   try {
     const data = await moviedb.movieInfo({ id: req.params.id });
-    let userReviewArray = await Movie.find({ userId: req.user.googleId, filmId: req.params.id });
+    let userReviewArray = await UserMovieData.find({
+      userId: req.user.googleId,
+      filmId: req.params.id,
+    });
     let userReview = userReviewArray[0];
 
     res.render("review-page", { data, userReview });
@@ -29,7 +31,7 @@ router.get("/film/:id/review", isLoggedIn, async (req, res) => {
 router.post("/film/:id/review", isLoggedIn, async (req, res) => {
   // if (req.userStatus === "user") {
   try {
-    await Movie.findOneAndUpdate(
+    await UserMovieData.findOneAndUpdate(
       { userId: req.user.googleId, filmId: req.params.id },
       {
         userId: req.user.googleid,
@@ -56,7 +58,7 @@ router.post("/film/:id/review", isLoggedIn, async (req, res) => {
 //edit review
 router.post("/film/:id/edit", isLoggedIn, async (req, res) => {
   try {
-    await Movie.findOneAndUpdate(
+    await UserMovieData.findOneAndUpdate(
       { userId: req.user.googleId, filmId: req.params.id },
       {
         review: req.body.review,

@@ -2,12 +2,12 @@ const router = require("express").Router();
 const { isLoggedIn } = require("../middlewares/auth.middlewares");
 const { MovieDb } = require("moviedb-promise");
 const moviedb = new MovieDb(process.env.KEY);
-const { Movie } = require("../models/Movie.module");
+const { UserMovieData } = require("../models/UserMovieData.module");
 
 //add title to watch list
 router.post("/film-details/:id", isLoggedIn, async (req, res) => {
   try {
-    await Movie.findOneAndUpdate(
+    await UserMovieData.findOneAndUpdate(
       { userId: req.user.googleId, filmId: req.params.id },
       { watchList: true },
       { upsert: true }
@@ -27,7 +27,7 @@ router.post("/film-details/:id", isLoggedIn, async (req, res) => {
 //delete film from watchlist:
 router.post("/films/watchlist/:id/delete", async (req, res) => {
   try {
-    await Movie.findOneAndDelete({ filmId: req.params.id });
+    await UserMovieData.findOneAndDelete({ filmId: req.params.id });
     console.log(req.params.id);
     res.redirect("/lists");
   } catch (error) {
@@ -39,7 +39,7 @@ router.post("/films/watchlist/:id/delete", async (req, res) => {
 //add film to like list
 router.post("/film-details/:id/like", isLoggedIn, async (req, res) => {
   try {
-    await Movie.findOneAndUpdate(
+    await UserMovieData.findOneAndUpdate(
       { userId: req.user.googleId, filmId: req.params.id },
       { liked: true },
       { upsert: true }
@@ -53,7 +53,7 @@ router.post("/film-details/:id/like", isLoggedIn, async (req, res) => {
 
 router.post("/film-details/:id/unlike", isLoggedIn, async (req, res) => {
   try {
-    await Movie.findOneAndUpdate(
+    await UserMovieData.findOneAndUpdate(
       { userId: req.user.googleId, filmId: req.params.id },
       { liked: false },
       { upsert: true }

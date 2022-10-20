@@ -1,8 +1,7 @@
 const router = require("express").Router();
 const { MovieDb } = require("moviedb-promise");
-// const { isLoggedIn } = require("../middlewares/auth.middlewares");
-const { userStatusCheck } = require("../middlewares/user.middlewares");
-const { Movie } = require("../models/Movie.module");
+// const { isLoggedIn } = require("../middlewres/auth.middlewares");
+const { UserMovieData: UserMovieData } = require("../models/UserMovieData.module");
 const moviedb = new MovieDb(process.env.KEY);
 
 //view film details:
@@ -12,27 +11,25 @@ router.get("/film-details/:id", async (req, res) => {
     const data = await moviedb.movieInfo({ id: req.params.id });
     const data_credits = await moviedb.movieCredits({ id: req.params.id });
     //dbqueries
-    const dbEntry = await Movie.find({ filmId: req.params.id });
-    const reviewEntries = await Movie.find(
-      { filmId: req.params.id },
-      { review: 1, reviewed: true }
-    );
+    const movieDataByUser = await UserMovieData.find({ filmId: req.params.id });
+
+    const movieForCurrentUser =
+      req.user &&
+      (await UserMovieData.findOne({
+        filmId: req.params.id,
+        userId: req.user.googleId,
+      }));
+
+    console.log(movieDataByUser);
     //if user has reviewed movie, if so do not show review text box
-    let viewReviewBox = true;
-    for (let movie of dbEntry) {
-      if (movie.userId === req.user.googleId && movie.reviewed === true) viewReviewBox = false;
-    }
+    let viewReviewBox = !movieForCurrentUser?.reviewed;
+    //if the movie is already 'liked' show unlike button
+    let likeButton = !movieForCurrentUser?.liked;
 
     //if there are no reviews written, do not show user review box
     let userReviewsHeader = false;
-    for (let movie of reviewEntries) {
+    for (let movie of movieDataByUser) {
       if (movie.reviewed === true) userReviewsHeader = true;
-    }
-
-    //if the movie is already 'liked' show unlike button
-    let likeButton = true;
-    for (let movie of dbEntry) {
-      if (movie.userId === req.user.googleId && movie.liked === true) likeButton = false;
     }
 
     //release year
@@ -51,7 +48,7 @@ router.get("/film-details/:id", async (req, res) => {
 
     res.render("film-details", {
       data,
-      dbEntry,
+      dbEntry: movieDataByUser,
       cast,
       director,
       likeButton,
