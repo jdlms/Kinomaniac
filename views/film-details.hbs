@@ -1,4 +1,3 @@
-{{!-- {{#with data}}
 {{#with data}}
   <img src="{{first_url_string}}{{backdrop_path}}" alt="backdrop image" />
   <h1>{{original_title}}</h1>
@@ -10,45 +9,6 @@
   <span>{{tagline}}</span>
   <p>{{overview}}</p>
 
-{{/with}} --}}
-
-{{! to include in details page, from movieInfo api call: original_title, overview, poster_path, genres, tagline }}
-
-
-<div class="container-fluid navbar-correction">
-  <div class="row align-items-center user-profile">
-    {{#with data}}
-      <div class="col-3 user-profile3 col-films img-container">
-        <a href="/film-details/{{id}}"><img
-            class="image"
-            src="{{first_url_string}}{{backdrop_path}}"
-            alt="{{original_title}} poster"
-          />
-        </a>
-        <div class="overlay">
-          <div class="action-icon-films">
-            <a href="/film-details/{{id}}"><i
-                class="bi bi-bookmark-plus icon-films"
-              ></i></a>
-            <a href="/film-details/{{id}}"><i
-                class="bi bi-star-fill icon-films"
-              ></i></a>
-            <a href="/film-details/{{id}}"><i
-                class="bi bi-share-fill icon-films"
-                alt="share"
-              ></i></a>
-          </div>
-        </div>
-      </div>
-      <div class="col-8 user-profile3">
-        <h1>{{original_title}}</h1>
-        <span>{{tagline}}</span>
-        <p>{{overview}}</p>
-        {{genres}}
-      </div>
-    {{/with}}
-  </div>
-</div>
   <form action="/film-details/{{id}}" method="POST">
     <button type="submit">Add to watch list</button>
   </form>
