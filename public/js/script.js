@@ -9,16 +9,19 @@ document.addEventListener(
 // toggle login button and user
 
 const UserInfoBar = document.querySelector("#user-info");
+const loginBtn = document.querySelector("#login-btn");
 
-hideLoginBtn.addEventListener("click", () => {
-  hideBtn();
+loginBtn.addEventListener("click", () => {
+  hideUserInfoBar();
   console.log("hola");
 });
 
-function hideBtn() {
-  UserInfoBar.remove("active");
-  overlayPopup.classList.remove("active");
-  hideScores.classList.remove("hidden");
+function hideUserInfoBar() {
+  if(user === !isLoggedIn) {
+    UserInfoBar.classList.toggle("hidden");
+    loginBtn.classList.toggle("active");
+  } else {
+    UserInfoBar.classList.remove("hidden");
+    loginBtn.classList.toggle("hidden");
+  }
 }
-
-hideLoginBtn
