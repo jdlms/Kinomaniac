@@ -28,11 +28,15 @@ router.get("/profile", isLoggedIn, async (req, res) => {
 });
 
 //Define the Logout
-router.post("/logout", (req, res) => {
-  req.logOut();
-  req.session.destroy();
-  res.redirect("/index");
-  console.log(`-------> User Logged out`);
+router.post("/logout", (req, res, next) => {
+  req.logOut((err) => {
+    if (err) {
+      return next(err);
+    }
+    req.session.destroy();
+    res.redirect("/");
+    console.log(`-------> User Logged out`);
+  });
 });
 
 module.exports = router;
