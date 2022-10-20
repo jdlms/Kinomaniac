@@ -58,20 +58,26 @@
             <li><a class="dropdown-item" href="/profile"><i class="bi bi-person-circle"></i> Profile</a></li>
             <li><a class="dropdown-item" href="#">Another action</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><form action="/logout" method="POST">
+            <li><form action="/logout" method="POST" id="logout-btn">
      <button class="dropdown-item btn-link" type="submit"><i class="bi bi-box-arrow-right"></i> Logout </button>
 </form></li>
           </ul>
         </li>
           </ul>
-          <form class="d-flex" role="search">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search movie"
-              aria-label="Search"
-            />
-          </form>
+          <form class="d-flex" role="search"
+      id="search-form"
+      action="/film-search"
+      method="get"
+      enctype="application/x-www-form-urlencoded"
+    >
+      <input
+        id="name"
+        name="name"
+        type="text"
+        value=""
+        placeholder="Enter film name"
+      />
+    </form>
       </div>
     </nav>
   </head>
@@ -92,7 +98,7 @@
       <div class="modal-body">
         <p>Sign up with your social media account or email address</p>
        <form action="/auth/google" method="GET">
-            <button type="submit" class="btn btn-danger"> <i class="bi bi-google"></i> SIGN UP WITH GOOGLE </button>
+            <button type="submit" class="btn btn-danger" id="login-google"> <i class="bi bi-google"></i> SIGN UP WITH GOOGLE </button>
           </form>
       </div>
     </div>

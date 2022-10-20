@@ -27,12 +27,14 @@ router.get("/profile", isLoggedIn, async (req, res) => {
   res.render("auth/profile", { user: req.user, reviewCount, watchlistCount, likedCount });
 });
 
-//Define the Logout
-router.post("/logout", (req, res) => {
-  req.logOut();
-  req.session.destroy();
-  res.redirect("/index");
-  console.log(`-------> User Logged out`);
+
+router.post('/logout', function (req, res, next) {
+  req.logout(function (err) {
+    if (err) { return next(err); }
+    req.session.destroy();
+    res.redirect('/');
+    console.log(`-------> User Logged out`);
+  });
 });
 
 module.exports = router;
