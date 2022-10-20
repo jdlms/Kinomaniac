@@ -12,7 +12,7 @@ body {
 }
 
 h1 {
-  font-size: 2.7rem;
+  font-size: 56px;
   line-height: 1;
 }
 
@@ -35,9 +35,6 @@ a:hover,
 }
 
 /* Navigation */
-
-
-
 .navbar {
   padding: 0 30px;
 }
@@ -103,6 +100,10 @@ a:hover,
   font-family: inherit;
   font-size: inherit;
 }
+
+/* .hidden {
+  display: none;
+} */
 
 /* Header with CTA */
 
@@ -173,6 +174,7 @@ li {
   background-color: #23292f !important;
   padding: 30px 20px;
   border-radius: 8px;
+  height: 300px;
 }
 
 .col-6 {
@@ -201,7 +203,6 @@ li {
   margin: 7px 7px 12px 7px;
 }
 
-
 /* Make the image to responsive */
 .img-container {
   position: relative;
@@ -214,12 +215,13 @@ li {
   height: auto;
 }
 
+/* The overlay effect - lays on top of the container and over the image */
 .overlay {
   position: absolute;
   top: 40%;
   overflow: hidden;
   background: rgb(0, 0, 0);
-  background: rgba(0, 0, 0, 0.67);
+  background: rgba(0, 0, 0, 0.67); /* Black see-through */
   color: #f1f1f1;
   width: 73%;
   transition: 0.5s ease;
@@ -230,49 +232,15 @@ li {
   text-align: center;
 }
 
+/* When you mouse over the container, fade in the overlay title */
 .img-container:hover .overlay {
   opacity: 1;
 }
 
-/* Single film view */
-
-.image-single-film {
-  display: block;
-  border-radius: 8px;
-  width: 80%;
-  height: auto;
-  max-height: 700px;
-}
-.single-film {
-  position: relative;
-  color: white;
-  display: flex;
-  justify-content: center;
-}
-
-.main-info-film {
+#film-search-container {
+  width: 95vw;
   display: flex;
   flex-direction: row;
-}
-
-.bottom-left {
-  position: absolute;
-  bottom: -50px;
-  background-color: #23292f;
-  width: 80%;
-  padding: 30px 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-.hidden {
-  display: none;
-}
-
-/* responsive design */
-
-@media (max-width: 768px) {
-  .col {
-    width: 100%;
-  }
+  justify-content: space-between;
+  align-items: flex-end;
 }

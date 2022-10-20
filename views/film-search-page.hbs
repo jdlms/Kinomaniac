@@ -1,3 +1,28 @@
+{{! <h1>Search for a film:</h1> }}
+
+{{!-- Hector can this be deleted? --}}
+{{!-- <div id="page-wrapper">
+  <nav id="film-search-container">
+    <a href="/films">Discover</a>
+    <form
+      id="search-form"
+      action="/film-search"
+      method="get"
+      enctype="application/x-www-form-urlencoded"
+    >
+      <input
+        id="name"
+        name="name"
+        type="text"
+        value=""
+        placeholder="Enter film name"
+      />
+      <button type="submit">Search</button>
+    </form>
+  </nav>
+</div> --}}
+
+
 {{#if data}}
   <div class="container-fluid navbar-correction">
     <div class="row align-items-center">
@@ -18,8 +43,8 @@
           </div>
         </div>
       {{/each}}
-    </div>
-  </div>
+
+
 {{/if}}
 
 <script src="/js/icon-events.js"></script>
