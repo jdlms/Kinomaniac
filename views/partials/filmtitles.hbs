@@ -1,15 +1,3 @@
-{{#with randomMovie}}
-<div class="container-fluid header background-image">
-  <img class='background-img' src="{{large_img_url_string}}{{backdrop_path}}" alt="">
-  <div class="row header-title">
-    <h1>Discover new titles. Track watched films. Create lists. Welcome, Kinomaniac.</h1>
-    <button type="button" class="btn btn-warning cta-btn" data-bs-toggle="modal"
-      data-bs-target="#exampleModal">Login</button>
-  </div>
-</div>
-{{/with}}
-
-
 {{#if data}}
 <div class="container-fluid navbar-correction">
   <div class="row align-items-center">
@@ -29,8 +17,3 @@
     </div>
     {{/each}}
     {{/if}}
-
-
-
-
-    <script src="/js/icon-events.js"></script>

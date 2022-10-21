@@ -83,6 +83,10 @@ module.exports = (app) => {
   app.set("views", path.join(__dirname, "..", "views"));
   // Sets the view engine to handlebars
   app.set("view engine", "hbs");
+
+  // handlebars.registerPartial("filmtitles", "{{filmtitles}}");
+
+  //icon helpers
   handlebars.registerHelper("isWatched", (movies, id) => {
     if (!movies) return "";
     return movies[id]?.watchList ? "watched" : "";

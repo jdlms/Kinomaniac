@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const { MovieDb } = require("moviedb-promise");
-
-//api key
+const { UserMovieData } = require("../models/UserMovieData.module");
 const moviedb = new MovieDb(process.env.KEY);
 
 //render film  page
@@ -15,10 +14,16 @@ router.get("/films", async (req, res) => {
     //map img link/string into each movie object
     data.results.map((movie) => (movie.first_url_string = configString));
 
+    const usermoviedata = await UserMovieData.find({ userId: req.user?.googleId });
+    const userMoviesById = usermoviedata.reduce((acc, val) => {
+      acc[val.filmId] = val;
+      return acc;
+    }, {});
+
     res.render("film-search-page", {
       docTitle: "Kinomaniac - Films",
       data: data.results,
-
+      userMoviesById,
     });
   } catch (error) {
     res.render("error");
