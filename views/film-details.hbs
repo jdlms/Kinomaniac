@@ -49,9 +49,9 @@ Cast:
 
 {{#if userReviewsHeader}}
   <h6>User Reviews:</h6>
-  {{#each dbEntry}}
+  {{#each movieDataByUser.review}}
     <ul>
-      <li class="review-list-item">USER NAME:{{this.review}}</li>
+      <li class="review-list-item">USER NAME:{{movieDataByUser.review}}</li>
     </ul>
   {{/each}}
   {{/if}}

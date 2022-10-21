@@ -12,6 +12,7 @@ router.get("/film-details/:id", async (req, res) => {
     const data_credits = await moviedb.movieCredits({ id: req.params.id });
     //dbqueries
     const movieDataByUser = await UserMovieData.find({ filmId: req.params.id });
+  
 
     const movieForCurrentUser =
       req.user &&
@@ -20,7 +21,7 @@ router.get("/film-details/:id", async (req, res) => {
         userId: req.user.googleId,
       }));
 
-    console.log(movieDataByUser);
+  
     //if user has reviewed movie, if so do not show review text box
     let viewReviewBox = !movieForCurrentUser?.reviewed;
     //if the movie is already 'liked' show unlike button
