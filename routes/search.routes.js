@@ -9,11 +9,19 @@ router.get("/films", async (req, res) => {
     const data = await moviedb.trending({ media_type: "movie", time_window: "week" });
     data.results.splice(data.length - 2, 2);
 
+    const upcoming = await moviedb.upcomingMovies();
+    upcoming.results.splice(data.length - 2, 2);
+
+    const toprated = await moviedb.movieTopRated();
+    toprated.results.splice(data.length - 2, 2);
+
     const config = await moviedb.configuration();
     const configCall = config.images;
     const configString = configCall.base_url + configCall.poster_sizes[1];
     //map img link/string into each movie object
     data.results.map((movie) => (movie.first_url_string = configString));
+    upcoming.results.map((movie) => (movie.first_url_string = configString));
+    toprated.results.map((movie) => (movie.first_url_string = configString));
 
     const usermoviedata = await UserMovieData.find({ userId: req.user?.googleId });
     const userMoviesById = usermoviedata.reduce((acc, val) => {
@@ -24,6 +32,8 @@ router.get("/films", async (req, res) => {
     res.render("film-search-page", {
       docTitle: "Kinomaniac - Films",
       data: data.results,
+      upcoming: upcoming.results,
+      toprated: toprated.results,
       userMoviesById,
     });
   } catch (error) {
