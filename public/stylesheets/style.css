@@ -241,6 +241,14 @@ li {
   opacity: 1;
 }
 
+#film-list-ul {
+  list-style-type: none;
+  display: flex;
+  /* flex-direction: row;
+  align-items: center; */
+  margin: 20px 0;
+}
+
 #name {
   width: 250px;
   border-radius: 5px;
