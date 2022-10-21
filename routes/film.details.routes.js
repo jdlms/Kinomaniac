@@ -1,68 +1,64 @@
 const router = require("express").Router();
 const { MovieDb } = require("moviedb-promise");
-
-//middleware
-const { isLoggedIn } = require("../middlewares/auth.middlewares");
-const { userStatusCheck } = require("../middlewares/user.middlewares");
-
-//require models
-const { Movie } = require("../models/Movie.module");
-//api key
+// const { isLoggedIn } = require("../middlewres/auth.middlewares");
+const { UserMovieData: UserMovieData } = require("../models/UserMovieData.module");
 const moviedb = new MovieDb(process.env.KEY);
 
 //view film details:
 router.get("/film-details/:id", async (req, res) => {
   try {
-    //api query
+    //api queries
     const data = await moviedb.movieInfo({ id: req.params.id });
-    //dbquery
-    let dbEntry = await Movie.find({ filmId: req.params.id }, { review: 1 });
+    const data_credits = await moviedb.movieCredits({ id: req.params.id });
+    //dbqueries
+    const movieDataByUser = await UserMovieData.find({ filmId: req.params.id });
+
+    const movieForCurrentUser =
+      req.user &&
+      (await UserMovieData.findOne({
+        filmId: req.params.id,
+        userId: req.user.googleId,
+      }));
+
+    console.log(movieDataByUser);
+    //if user has reviewed movie, if so do not show review text box
+    let viewReviewBox = !movieForCurrentUser?.reviewed;
+    //if the movie is already 'liked' show unlike button
+    let likeButton = !movieForCurrentUser?.liked;
+
+    //if there are no reviews written, do not show user review box
+    let userReviewsHeader = false;
+    for (let movie of movieDataByUser) {
+      if (movie.reviewed === true) userReviewsHeader = true;
+    }
+
+    //release year
+    let releaseYear = data.release_date.slice(0, 4);
+    data.releaseYear = releaseYear;
+
+    //cast and director
+    const cast = data_credits.cast.slice(0, 6);
+    const [director] = data_credits.crew.filter((movie) => movie.job === "Director");
 
     //construction of backdrop image url
     const config = await moviedb.configuration();
     const configCall = config.images;
     const configString = configCall.base_url + configCall.backdrop_sizes[1];
     data.first_url_string = configString;
-    console.log(data);
-    res.render("film-details", { data, dbEntry });
+
+    res.render("film-details", {
+      data,
+      dbEntry: movieDataByUser,
+      cast,
+      director,
+      likeButton,
+      viewReviewBox,
+      userReviewsHeader,
+    });
   } catch (error) {
     res.render("error");
     console.log(error);
   }
 });
-
-//post review:
-router.post("/film/:id/review", isLoggedIn, async (req, res) => {
-  // if (req.userStatus === "user") {
-  try {
-    await Movie.findOneAndUpdate(
-      { userId: req.user.googleId, filmId: req.params.id },
-      {
-        userId: req.user.googleid,
-        filmId: req.params.id,
-        watchList: false,
-        review: req.body.review,
-        reviewed: true,
-      },
-      { upsert: true }
-    );
-
-    res.redirect("back");
-  } catch (error) {
-    res.render("error");
-  }
-  // } else {
-  //   try {
-  //     res.redirect("back");
-  //   } catch (error) {}
-  //   res.render("error");
-  // }
-});
-
-//genres, cast, direct, streaming locations, similar films
-
-//to include in details page, from movieInfo api call: original_title, overview, poster_path, genres, tagline
-
-//info to include that is not in movieInfo api call: random image from film (?), cast, crew, details (studio, country, language, length), themes (extension of genre tag), where to watch
 
 module.exports = router;

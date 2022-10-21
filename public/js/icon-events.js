@@ -1,17 +1,26 @@
 document.addEventListener(
   "DOMContentLoaded",
   () => {
-    console.log("m2-project JS imported successfully!");
-
     const icons = [...document.getElementsByClassName("action-icon-films")];
     icons.forEach((iconContainer) => {
-      const [saveIcon, starIcon] = iconContainer.children;
-      saveIcon.addEventListener("click", () => {
-        console.log("saveIcon", iconContainer.dataset.movieId);
-      });
-      starIcon.addEventListener("click", () => {
-        console.log("starIcon", iconContainer.dataset.movieId);
-      });
+      const [watchListIcon, starIcon] = iconContainer.children;
+      if (!watchListIcon.contains("watched")) {
+        watchListIcon.addEventListener("click", () => {
+          fetch(`/film-details/${iconContainer.dataset.movieId}`, {
+            method: "POST",
+          }).then(function (response) {
+            console.log(response);
+          });
+        });
+      }
+      if (!watchListIcon.contains("starred"))
+        starIcon.addEventListener("click", () => {
+          fetch(`/film-details/${iconContainer.dataset.movieId}/like`, {
+            method: "POST",
+          }).then(function (response) {
+            console.log(response);
+          });
+        });
     });
   },
   false

@@ -1,16 +1,13 @@
 const router = require("express").Router();
 const { isLoggedIn } = require("../middlewares/auth.middlewares");
-
 const { MovieDb } = require("moviedb-promise");
-//api key
 const moviedb = new MovieDb(process.env.KEY);
-//require models
-const { Movie } = require("../models/Movie.module");
+const { UserMovieData } = require("../models/UserMovieData.module");
 
 //add title to watch list
 router.post("/film-details/:id", isLoggedIn, async (req, res) => {
   try {
-    await Movie.findOneAndUpdate(
+    await UserMovieData.findOneAndUpdate(
       { userId: req.user.googleId, filmId: req.params.id },
       { watchList: true },
       { upsert: true }
@@ -24,6 +21,47 @@ router.post("/film-details/:id", isLoggedIn, async (req, res) => {
       res.render("error");
       console.log(error);
     }
+  }
+});
+
+//delete film from watchlist:
+router.post("/films/watchlist/:id/delete", async (req, res) => {
+  try {
+    await UserMovieData.findOneAndDelete({ filmId: req.params.id });
+    console.log(req.params.id);
+    res.redirect("/lists");
+  } catch (error) {
+    res.render("error");
+    console.log(error);
+  }
+});
+
+//add film to like list
+router.post("/film-details/:id/like", isLoggedIn, async (req, res) => {
+  try {
+    await UserMovieData.findOneAndUpdate(
+      { userId: req.user.googleId, filmId: req.params.id },
+      { liked: true },
+      { upsert: true }
+    );
+    res.redirect("/films");
+  } catch (error) {
+    res.render("error");
+    console.log(error);
+  }
+});
+
+router.post("/film-details/:id/unlike", isLoggedIn, async (req, res) => {
+  try {
+    await UserMovieData.findOneAndUpdate(
+      { userId: req.user.googleId, filmId: req.params.id },
+      { liked: false },
+      { upsert: true }
+    );
+    res.redirect("/films");
+  } catch (error) {
+    res.render("error");
+    console.log(error);
   }
 });
 

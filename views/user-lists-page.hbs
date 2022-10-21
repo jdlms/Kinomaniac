@@ -38,3 +38,19 @@
     </ul>
   {{/each}}
 </div>
+
+<h4>Liked movies:</h4>
+{{#each likedMoviesData}}
+    <ul id="film-results-ul">
+      <li><a href="/film-details/{{this.id}}"><img
+            src="{{this.first_url_string}}{{this.poster_path}}"
+            alt="{{this.original_title}} poster"
+          />
+        </a>
+        <br />
+        {{!-- <a href="/film/{{this.id}}/review">Edit</a> --}}
+      </li>
+    </ul>
+{{/each}}
+
+</div>

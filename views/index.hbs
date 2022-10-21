@@ -1,39 +1,35 @@
-
 {{#with randomMovie}}
 <div class="container-fluid header background-image">
   <img class='background-img' src="{{large_img_url_string}}{{backdrop_path}}" alt="">
   <div class="row header-title">
-    <h1>All the films and series you ever wanted to watch, tracked in one place</h1>
-    <button
-      type="button"
-      class="btn btn-warning cta-btn"
-      data-bs-toggle="modal"
-      data-bs-target="#exampleModal"
-    >Login</button>
+    <h1>Discover new titles. Track watched films. Create lists. Welcome, Kinomaniac.</h1>
+    <button type="button" class="btn btn-warning cta-btn" data-bs-toggle="modal"
+      data-bs-target="#exampleModal">Login</button>
   </div>
-  </div>
-  {{/with}}
-<br>
-{{#if data}}
-  <div class="container-fluid navbar-correction">
-    <div class="row align-items-center">
-      {{#each data}}
-        <div class="col-md-2 col-films col-sm-12 img-container">
-          <a href="/film-details/{{this.id}}"><img
-              class="image"
-              src="{{this.first_url_string}}{{this.poster_path}}"
-              alt="{{this.original_title}} poster"
-            />
-          </a>
-          <div class="overlay">
-            <div class="action-icon-films" data-movie-id="{{this.id}}">
-              <i class="bi bi-bookmark-plus icon-films"></i>
-              <i class="bi bi-star-fill icon-films"></i>
-              <i class="bi bi-share-fill icon-films" alt="share"></i>
-            </div>
-          </div>
-        </div>
-      {{/each}}
-{{/if}}
+</div>
+{{/with}}
 
-<script src="/js/icon-events.js"></script>
+
+{{#if data}}
+<div class="container-fluid navbar-correction">
+  <div class="row align-items-center">
+    {{#each data}}
+    <div class="col-md-2 col-films col-sm-12 img-container">
+      <a href="/film-details/{{this.id}}"><img class="image" src="{{this.first_url_string}}{{this.poster_path}}"
+          alt="{{this.original_title}} poster" />
+      </a>
+      {{#if ../user}}
+      <div class="overlay">
+        <div class="action-icon-films" data-movie-id="{{id}}">
+          <i class="bi bi-bookmark-plus icon-films {{isWatched ../userMoviesById id}}" ></i>
+          <i class="bi bi-star-fill icon-films {{isStarred ../userMoviesById id}}"></i>
+        </div>
+      </div>
+      {{/if}}
+    </div>
+    {{/each}}
+    {{/if}}
+
+
+
+    <script src="/js/icon-events.js"></script>

@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { isLoggedIn } = require("../middlewares/auth.middlewares");
 const passport = require("passport");
+const { UserMovieData } = require("../models/UserMovieData.module");
 
 router.get("/login", function (req, res, next) {
   res.render("auth/login");
@@ -19,17 +20,21 @@ const passportMiddleware = passport.authenticate("google", {
 router.get("/auth/google/callback", passportMiddleware);
 
 //Define the Protected Route, by using the "checkAuthenticated" function defined above as middleware
-router.get("/profile", isLoggedIn, (req, res) => {
-  console.log(req.user);
-  res.render("auth/profile", { user: req.user });
+router.get("/profile", isLoggedIn, async (req, res) => {
+  const reviewCount = await UserMovieData.where({ reviewed: true }).countDocuments();
+  const watchlistCount = await UserMovieData.where({ watchList: true }).countDocuments();
+  const likedCount = await UserMovieData.where({ liked: true }).countDocuments();
+  res.render("auth/profile", { user: req.user, reviewCount, watchlistCount, likedCount });
 });
 
-
-router.post('/logout', function (req, res, next) {
-  req.logout(function (err) {
-    if (err) { return next(err); }
+//Define the Logout
+router.post("/logout", (req, res, next) => {
+  req.logOut((err) => {
+    if (err) {
+      return next(err);
+    }
     req.session.destroy();
-    res.redirect('/');
+    res.redirect("/");
     console.log(`-------> User Logged out`);
   });
 });
