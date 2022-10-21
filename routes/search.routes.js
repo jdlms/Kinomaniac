@@ -3,7 +3,7 @@ const { MovieDb } = require("moviedb-promise");
 const { UserMovieData } = require("../models/UserMovieData.module");
 const moviedb = new MovieDb(process.env.KEY);
 
-//render film  page
+//render film page
 router.get("/films", async (req, res) => {
   try {
     const data = await moviedb.trending({ media_type: "movie", time_window: "week" });

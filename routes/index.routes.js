@@ -9,9 +9,6 @@ router.get("/", async (req, res, next) => {
     const data1 = await moviedb.trending({ media_type: "movie", time_window: "week" });
     const data2 = await moviedb.trending({ media_type: "movie", time_window: "week", page: 2 });
 
-    const data_current = await moviedb.movieNowPlaying({ page: 1, region: "DE" });
-    // console.log(data_current);
-
     const data = [...data1.results, ...data2.results];
     data.splice(data.length - 4, 4);
 
