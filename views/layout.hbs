@@ -32,13 +32,7 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          {{#unless user}}
-          <button type="button" class="btn btn-primary btn-warning" id="login-btn" data-bs-toggle="modal" data-bs-target="#exampleModal" ><i class="bi bi-box-arrow-in-right"></i>
-      
-            Login
-          </button>
-          {{/unless}}
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">         
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="/">Home</a>
@@ -52,7 +46,8 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Upcoming</a>
             </li>
-            <li class="nav-item dropdown hidden">
+            {{#if user}}
+            <li class="nav-item dropdown">
               				<a href="#" data-bs-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action" id="user-info" aria-expanded="false"><img src="{{user.picture}}" class="avatar" alt="Avatar"/> {{user.displayName}} </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="/profile"><i class="bi bi-person-circle"></i> Profile</a></li>
@@ -60,6 +55,12 @@
             <li><hr class="dropdown-divider"></li>
             <li><form action="/logout" method="POST" id="logout-btn">
      <button class="dropdown-item btn-link" type="submit"><i class="bi bi-box-arrow-right"></i> Logout </button>
+     {{else}}
+      <button type="button" class="btn btn-primary btn-warning" id="login-btn" data-bs-toggle="modal" data-bs-target="#exampleModal" ><i class="bi bi-box-arrow-in-right"></i>
+      
+            Login
+          </button>
+          {{/if}}
 </form></li>
           </ul>
         </li>
