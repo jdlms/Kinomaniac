@@ -8,7 +8,6 @@ const user_movie_data_schema = new mongoose.Schema({
   filmId: {
     type: Number,
     required: true,
-    unique: true,
   },
   watchList: {
     type: Boolean,

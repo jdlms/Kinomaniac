@@ -6,6 +6,7 @@ document.addEventListener(
       const [watchListIcon, starIcon] = iconContainer.children;
       if (!watchListIcon.contains("watched")) {
         watchListIcon.addEventListener("click", () => {
+          console.log("hi!");
           fetch(`/film-details/${iconContainer.dataset.movieId}`, {
             method: "POST",
           }).then(function (response) {
