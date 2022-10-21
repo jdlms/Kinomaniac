@@ -30,6 +30,7 @@ router.get("/film/:id/review", isLoggedIn, async (req, res) => {
 router.post("/film/:id/review", isLoggedIn, async (req, res) => {
   // if (req.userStatus === "user") {
   try {
+
     await UserMovieData.findOneAndUpdate(
       { userId: req.user.googleId, filmId: req.params.id },
       {
@@ -37,7 +38,7 @@ router.post("/film/:id/review", isLoggedIn, async (req, res) => {
         filmId: req.params.id,
         watchList: false,
         review: req.body.review,
-        userName: req.user.displayName,
+        userName: req.user.displayName.split(" ")[0],
         reviewed: true,
       },
       { upsert: true }
