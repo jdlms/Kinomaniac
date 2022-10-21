@@ -28,7 +28,6 @@ router.post("/film-details/:id", isLoggedIn, async (req, res) => {
 router.post("/films/watchlist/:id/delete", async (req, res) => {
   try {
     await UserMovieData.findOneAndDelete({ filmId: req.params.id });
-    console.log(req.params.id);
     res.redirect("/lists");
   } catch (error) {
     res.render("error");
@@ -51,6 +50,7 @@ router.post("/film-details/:id/like", isLoggedIn, async (req, res) => {
   }
 });
 
+//unlike film
 router.post("/film-details/:id/unlike", isLoggedIn, async (req, res) => {
   try {
     await UserMovieData.findOneAndUpdate(

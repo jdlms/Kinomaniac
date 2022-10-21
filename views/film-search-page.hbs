@@ -1,49 +1,64 @@
-{{! <h1>Search for a film:</h1> }}
-
-{{!-- Hector can this be deleted? --}}
-{{!-- <div id="page-wrapper">
-  <nav id="film-search-container">
-    <a href="/films">Discover</a>
-    <form
-      id="search-form"
-      action="/film-search"
-      method="get"
-      enctype="application/x-www-form-urlencoded"
-    >
-      <input
-        id="name"
-        name="name"
-        type="text"
-        value=""
-        placeholder="Enter film name"
-      />
-      <button type="submit">Search</button>
-    </form>
-  </nav>
-</div> --}}
-
-
 {{#if data}}
-  <div class="container-fluid navbar-correction">
-    <div class="row align-items-center">
-      {{#each data}}
-        <div class="col-md-2 col-films col-sm-12 img-container">
-          <a href="/film-details/{{this.id}}"><img
-              class="image"
-              src="{{this.first_url_string}}{{this.poster_path}}"
-              alt="{{this.original_title}} poster"
-            />
-          </a>
-          <div class="overlay">
-            <div class="action-icon-films" data-movie-id="{{this.id}}">
-              <i class="bi bi-bookmark-plus icon-films"></i>
-              <i class="bi bi-star-fill icon-films"></i>
-            </div>
-          </div>
+<div class="container-fluid navbar-correction">
+<h6>Trending</h6>
+  <div class="row align-items-center">
+    {{#each data}}
+    <div class="col-md-2 col-films col-sm-12 img-container">
+      <a href="/film-details/{{this.id}}"><img class="image" src="{{this.first_url_string}}{{this.poster_path}}"
+          alt="{{this.original_title}} poster" />
+      </a>
+      {{#if ../user}}
+      <div class="overlay">
+        <div class="action-icon-films" data-movie-id="{{id}}">
+          <i class="bi bi-bookmark-plus icon-films {{isWatched ../userMoviesById id}}" ></i>
+          <i class="bi bi-star-fill icon-films {{isStarred ../userMoviesById id}}"></i>
         </div>
-      {{/each}}
+      </div> 
+      {{/if}}
+    </div>
+    {{/each}}
+    {{/if}}
 
+ {{#if upcoming}}
+<div class="container-fluid navbar-correction">
+<h6>Upcoming</h6>
+  <div class="row align-items-center">
+    {{#each upcoming}}
+    <div class="col-md-2 col-films col-sm-12 img-container">
+      <a href="/film-details/{{this.id}}"><img class="image" src="{{this.first_url_string}}{{this.poster_path}}"
+          alt="{{this.original_title}} poster" />
+      </a>
+      {{#if ../user}}
+      <div class="overlay">
+        <div class="action-icon-films" data-movie-id="{{id}}">
+          <i class="bi bi-bookmark-plus icon-films {{isWatched ../userMoviesById id}}" ></i>
+          <i class="bi bi-star-fill icon-films {{isStarred ../userMoviesById id}}"></i>
+        </div>
+      </div> 
+      {{/if}}
+    </div>
+    {{/each}}
+    {{/if}}
 
-{{/if}}
+    {{#if toprated}}
+<div class="container-fluid navbar-correction">
+<h6>Popular</h6>
+  <div class="row align-items-center">
+    {{#each toprated}}
+    <div class="col-md-2 col-films col-sm-12 img-container">
+      <a href="/film-details/{{this.id}}"><img class="image" src="{{this.first_url_string}}{{this.poster_path}}"
+          alt="{{this.original_title}} poster" />
+      </a>
+      {{#if ../user}}
+      <div class="overlay">
+        <div class="action-icon-films" data-movie-id="{{id}}">
+          <i class="bi bi-bookmark-plus icon-films {{isWatched ../userMoviesById id}}" ></i>
+          <i class="bi bi-star-fill icon-films {{isStarred ../userMoviesById id}}"></i>
+        </div>
+      </div> 
+      {{/if}}
+    </div>
+    {{/each}}
+    {{/if}}
 
 <script src="/js/icon-events.js"></script>
