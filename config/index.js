@@ -42,7 +42,6 @@ module.exports = (app) => {
         passReqToCallback: true,
       },
       function (req, accessToken, refreshToken, profile, cb) {
-        // console.log(profile);
         User.findOrCreate({ googleId: profile.id }, function (err, user) {
           const googleUser = {
             googleId: profile.id,

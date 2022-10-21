@@ -43,7 +43,6 @@ router.get("/lists", isLoggedIn, async (req, res) => {
       async (movieId) => await moviedb.movieInfo({ id: movieId })
     );
     const likedMoviesData = await Promise.all(likedIdRequests);
-    console.log(likedMoviesData);
 
     //image config:
     const config = await moviedb.configuration();

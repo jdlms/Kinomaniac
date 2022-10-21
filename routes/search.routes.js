@@ -42,7 +42,6 @@ router.get("/film-search", async (req, res) => {
       docTitle: "Film Search",
       data: data.results,
     });
-    console.log(data);
   } catch (error) {
     res.render("error");
     console.log("The error while searching artists occurred: ", error);
