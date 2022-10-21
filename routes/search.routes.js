@@ -7,6 +7,7 @@ const moviedb = new MovieDb(process.env.KEY);
 router.get("/films", async (req, res) => {
   try {
     const data = await moviedb.trending({ media_type: "movie", time_window: "week" });
+    data.results.splice(data.length - 2, 2);
 
     const config = await moviedb.configuration();
     const configCall = config.images;
