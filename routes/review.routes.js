@@ -19,7 +19,6 @@ router.get("/film/:id/review", isLoggedIn, async (req, res) => {
       filmId: req.params.id,
     });
     let userReview = userReviewArray[0];
-
     res.render("review-page", { data, userReview });
   } catch (error) {
     res.render("error");
@@ -38,6 +37,7 @@ router.post("/film/:id/review", isLoggedIn, async (req, res) => {
         filmId: req.params.id,
         watchList: false,
         review: req.body.review,
+        userName: req.user.displayName,
         reviewed: true,
       },
       { upsert: true }

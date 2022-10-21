@@ -15,6 +15,9 @@ const user_movie_data_schema = new mongoose.Schema({
   review: {
     type: String,
   },
+  userName: {
+    type: String,
+  },
   reviewed: {
     type: Boolean,
   },
