@@ -23,7 +23,7 @@ router.get("/film-details/:id", async (req, res) => {
     const configCall = config.images;
     const configString = configCall.base_url + configCall.backdrop_sizes[1];
     data.first_url_string = configString;
-
+    console.log(data);
     res.render("film-details", { data, dbEntry });
   } catch (error) {
     res.render("error");
