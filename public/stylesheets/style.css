@@ -30,6 +30,8 @@ a {
 }
 
 a:hover,
+.watched,
+.starred,
 .icon-films:hover {
   color: #ffc107;
 }
