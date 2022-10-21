@@ -8,11 +8,31 @@
 {{/with}} --}}
 
 {{! to include in details page, from movieInfo api call: original_title, overview, poster_path, genres, tagline }}
-
-
+{{#with data}}
+<div class="container-fluid single-film">
+  <img
+            class="image-single-film"
+            src="{{first_url_string}}{{backdrop_path}}"
+            alt="{{original_title}} poster"
+          />
+  <div class="row bottom-left">
+    <div class="col main-info-film ">
+      <h1>{{original_title}}</h1>
+        
+        <p>{{genres.[0].name}}</p>
+        <p>{{production_companies.[0].name}}</p>
+        <p>{{release_date}}</p>
+    </div>
+    <div class="col">
+      <span>{{tagline}}</span>
+      <p>{{overview}}</p>
+    </div>
+    
+  </div>
+</div>
 <div class="container-fluid navbar-correction">
   <div class="row align-items-center user-profile">
-    {{#with data}}
+    
       <div class="col-3 user-profile3 col-films img-container">
         <a href="/film-details/{{id}}"><img
             class="image"
@@ -36,12 +56,26 @@
         </div>
       </div>
       <div class="col-8 user-profile3">
-        <h1>{{original_title}}</h1>
-        <span>{{tagline}}</span>
-        <p>{{overview}}</p>
-        {{genres}}
+        <p>
+  <a class="btn btn-primary" data-bs-toggle="collapse" href="#cast" role="button" aria-expanded="false" aria-controls="cast">
+    Cast
+  </a>
+  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#crew" aria-expanded="false" aria-controls="collapseExample">
+    Crew
+  </button>
+</p>
+<div class="collapse-show collapsing" id="cast">
+  <div class="card card-body">
+    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+  </div>
+</div>
+<div class="collapse" id="crew">
+  <div class="card card-body">
+    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+  </div>
+</div>
       </div>
-    {{/with}}
+
   </div>
 </div>
   <form action="/film-details/{{id}}" method="POST">
