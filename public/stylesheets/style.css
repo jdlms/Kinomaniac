@@ -136,7 +136,7 @@ a:hover,
   background-size: cover;
   height: 720px;
   z-index: -1;
-  filter: brightness(40%);
+  filter: brightness(60%);
 }
 
 /* Modal */
