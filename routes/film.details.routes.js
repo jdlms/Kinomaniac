@@ -30,6 +30,8 @@ router.get("/film-details/:id", async (req, res) => {
     //if the movie is already 'liked' show unlike button
     let likeButton = !movieForCurrentUser?.liked;
 
+    let watchlistButton = !movieForCurrentUser?.watchList;
+
     //if there are no reviews written, do not show user review box
     let userReviewsHeader = false;
     for (let movie of movieDataByUser) {
@@ -56,6 +58,7 @@ router.get("/film-details/:id", async (req, res) => {
       cast,
       director,
       likeButton,
+      watchlistButton,
       viewReviewBox,
       userReviewsHeader,
       allUserReviewsForMovie,

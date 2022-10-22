@@ -167,16 +167,21 @@ li {
 
 .user-profile2 {
   /* background-color: #23292F !important; */
-  padding: 30px 0px;
+  padding: 0px 0px;
   border-radius: 8px;
-  margin: 0px 60px;
-  display: flex;
-  justify-content: space-between;
+  margin: 0px 0px;
+  /* display: flex;
+  flex-direction: row; */
+}
+
+.entry-count * {
+  background-color: #23292f !important;
+  display: inline;
 }
 
 .user-profile3 {
   background-color: #23292f !important;
-  padding: 30px 20px;
+  padding: 10px 10px;
   border-radius: 8px;
   height: 300px;
 }
@@ -242,11 +247,27 @@ li {
 }
 
 #film-list-ul {
-  list-style-type: none;
   display: flex;
-  /* flex-direction: row;
-  align-items: center; */
+  list-style-type: none;
+  flex-direction: row;
   margin: 20px 0;
+}
+
+.user-lists-li * {
+  display: inline;
+}
+
+.lists-edit-review-link {
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #eeeeee;
+  color: #333333;
+  padding: 4px 8px 4px 8px;
+  border-top: 1px solid #cccccc;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #cccccc;
+  border-radius: 5px;
 }
 
 #name {
@@ -254,6 +275,10 @@ li {
   border-radius: 5px;
   padding: 3px;
   border: 0;
+}
+
+#header-span {
+  text-decoration: underline;
 }
 
 #search-form {
