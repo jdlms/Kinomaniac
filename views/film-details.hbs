@@ -1,59 +1,103 @@
+<div class="container-fluid navbar-correction">
+  <div class="row user-profile">
+    <div class="col">
 {{#with data}}
   <img src="{{first_url_string}}{{backdrop_path}}" alt="backdrop image" />
+  </div>
+  <div class="col">
   <h1>{{original_title}}</h1>
   <h6>{{releaseYear}}</h6>
   {{#with ../director}}
-    <p>Directed by {{this.name}}</p>
+    <h4>Directed by {{this.name}}</h4>
   {{/with}}
 
-  <span>{{tagline}}</span>
+  <p>{{tagline}}</p>
   <p>{{overview}}</p>
-
+<div class="btns-single-film">
   <form action="/film-details/{{id}}" method="POST">
-    <button type="submit">Add to watch list</button>
+    <button type="submit" class="btn btn-warning btn-watchlist"><i class="bi bi-plus-circle"></i> Add to watch list</button>
   </form>
 
 {{#if ../likeButton}}
  <form action="/film-details/{{id}}/like" method="POST">
-    <button type="submit">Like</button>
+    <button type="submit" class="btn btn-outline-warning"><i class="bi bi-hand-thumbs-up"></i> Like</button>
   </form>
 {{else}}
  <form action="/film-details/{{id}}/unlike" method="POST">
-    <button type="submit">Un-like</button>
+    <button type="submit" class="btn btn-outline-warning"><i class="bi bi-hand-thumbs-down"></i> Un-like</button>
   </form>
 {{/if}}
+</div>
+</div>
+  </div>
+</div>
 
-  Genres:
-  <ul>
+
+
+
+{{! to include in details page, from movieInfo api call: original_title, overview, poster_path, genres, tagline }}
+
+<div class="container-fluid">
+  <div class="row align-items-center user-profile2">
+    <div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button accordion-bkg" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Genres
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body accordion-bkg">
+        <strong>
     {{#each genres}}
-      <li>{{this.name}}</li>
+      <span class="film-item">{{this.name}}</span>
     {{/each}}
-  </ul>
 {{/with}}
-
-Cast:
-
-{{#each cast}}
-  <ul>
-    <li>{{this.name}}</li>
-  </ul>
-{{/each}}
-
-{{#if viewReviewBox}}
-  <h6>Review:</h6>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+      <button class="accordion-button collapsed accordion-bkg" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Cast
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+      <div class="accordion-body accordion-bkg">
+        {{#each cast}}
+            <span class="film-item">{{this.name}}</span>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingThree">
+      <button class="accordion-button collapsed accordion-bkg" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        Reviews
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+      <div class="accordion-body accordion-bkg">
+        {{#if viewReviewBox}}
+  <h6>Submit your review today:</h6>
   <form action="/film/{{data.id}}/review" method="POST">
     <textarea class="form-control" id="review" name="review" rows="3"></textarea>
-    <button type="submit">Submit</button>
+    <br>
+    <button type="submit" class="btn btn-warning">Submit</button>
   </form>
 {{/if}}
 
 {{#if userReviewsHeader}}
-  <h6>User Reviews:</h6>
+  <h6>Submit your review here:</h6>
   {{#each allUserReviewsForMovie}}
     <ul>
       <li class="review-list-item">{{this.userName}}: {{this.review}}</li>
     </ul>
   {{/each}}
   {{/if}}
-
-{{! to include in details page, from movieInfo api call: original_title, overview, poster_path, genres, tagline }}
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+</div>
