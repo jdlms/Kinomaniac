@@ -74,6 +74,7 @@ a:hover,
 .form-control {
   background-color: #23292f;
   border-color: #65696c;
+  color: whitesmoke;
 }
 
 .avatar {
