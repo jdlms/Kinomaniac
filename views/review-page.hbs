@@ -1,15 +1,19 @@
-<h1>Test!</h1>
-<h1>Test!</h1>
-<h1>Test!</h1>
+<div class="container-fluid navbar-correction">
+  <div class="row user-profile">
+<h2>Edit your review</h2>
+<h4>Want to change your review of {{#with data}}
+  {{original_title}}
+{{/with}}?</h4>
 
-{{#with data}}
-  <h3>{{original_title}}</h3>
-{{/with}}
+
 
 {{#with userReview}}
   <form action="/film/{{filmId}}/edit" method="POST">
     <textarea class="form-control" id="review" name="review" rows="3">{{review}}</textarea>
-
-    <button type="submit">Save</button>
+    <br>
+    <button type="submit" class="btn btn-warning">Save</button>
   </form>
 {{/with}}
+
+  </div>
+</div>

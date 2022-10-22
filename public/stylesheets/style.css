@@ -63,7 +63,7 @@ a:hover,
 }
 
 .navbar-correction {
-  margin-top: 60px;
+  margin-top: 100px;
 }
 
 .me-2 {
@@ -74,6 +74,7 @@ a:hover,
 .form-control {
   background-color: #23292f;
   border-color: #65696c;
+  color: whitesmoke;
 }
 
 .avatar {
@@ -102,10 +103,6 @@ a:hover,
   font-family: inherit;
   font-size: inherit;
 }
-
-/* .hidden {
-  display: none;
-} */
 
 /* Header with CTA */
 
@@ -273,12 +270,17 @@ li {
 #name {
   width: 250px;
   border-radius: 5px;
+
+  border: solid 1px #23292F;
+  padding: 3px;
+
   padding: 3px;
   border: 0;
 }
 
 #header-span {
   text-decoration: underline;
+
 }
 
 #search-form {
@@ -294,4 +296,69 @@ li {
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
+}
+
+/* Single page */
+.btns-single-film {
+  display: inline-flex;
+  justify-content: flex-start;
+}
+
+.btn-watchlist {
+  margin-right: 10px;
+}
+
+
+.film-item {
+  padding: 5px 10px;
+  border: solid 1px;
+  margin: 15px 5px;
+  border-radius: 8px;
+  font-weight: 400;
+}
+
+.accordion {
+  --bs-accordion-border-color: #3a4550;
+  --bs-accordion-bg: none;
+}
+
+.accordion-bkg {
+  background-color: #23292F;
+  color: whitesmoke;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #23292F;
+  color: whitesmoke !important;
+}
+
+.accordion-button:not(.collapsed)::after {
+  color: whitesmoke !important;
+}
+
+.accordion-item:first-of-type .accordion-button {
+  border-top-left-radius: none !important;
+  border-top-right-radius: none !important;
+  box-shadow: none;
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+}
+
+
+/* Footer */
+
+.footer {
+  text-align: center;
+  padding: 30px 0 15px 0;
+  font-weight: 400;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #23292F;
+  margin-top: 50px;
+}
+
+#link-api {
+  text-decoration: underline;
 }
