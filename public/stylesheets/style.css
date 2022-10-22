@@ -252,6 +252,8 @@ li {
 #name {
   width: 250px;
   border-radius: 5px;
+  padding: 3px;
+  border: 0;
 }
 
 #search-form {
