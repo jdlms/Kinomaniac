@@ -259,6 +259,11 @@ li {
   border: 0;
 }
 
+#header-span {
+  font-family: "Limelight", cursive;
+  font-size: 1.8rm;
+}
+
 #search-form {
   margin-top: 18px;
   margin-left: 10px;
