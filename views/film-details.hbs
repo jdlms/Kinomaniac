@@ -9,9 +9,17 @@
   <span>{{tagline}}</span>
   <p>{{overview}}</p>
 
+
+{{#if ../watchlistButton}}
   <form action="/film-details/{{id}}" method="POST">
     <button type="submit">Add to watch list</button>
   </form>
+{{else}}
+<form action="/films/watchlist/{{this.id}}/delete" method="POST">
+          <input type="submit" value="Watched" />
+        </form>
+
+{{/if}}
 
 {{#if ../likeButton}}
  <form action="/film-details/{{id}}/like" method="POST">
