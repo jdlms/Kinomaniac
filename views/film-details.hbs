@@ -18,11 +18,12 @@
 
 {{#if ../watchlistButton}}
   <form action="/film-details/{{id}}" method="POST">
-    <input type="submit" value="To watch"</>
+    <input class="btn btn-warning btn-watchlist" type="submit" value="To watch"</>
+
   </form>
 {{else}}
 <form action="/films/watchlist/{{this.id}}/delete" method="POST">
-          <input type="submit" value="Watched" />
+          <input class="btn btn-warning btn-watchlist" type="submit" value="Watched" />
         </form>
 
 {{/if}}
@@ -30,11 +31,11 @@
 {{#if ../likeButton}}
  <form action="/film-details/{{id}}/like" method="POST">
 
-    <input type="submit" value="Un-like"/>
+    <input class="btn btn-outline-warning" type="submit" value="Un-like"/>
   </form>
 {{else}}
    <form action="/film-details/{{id}}/unlike" method="POST">
-          <input type="submit" value="Un-like" />
+          <input class="btn btn-outline-warning" type="submit" value="Un-like" />
         </form>
 
 {{/if}}
@@ -94,7 +95,7 @@
   <form action="/film/{{data.id}}/review" method="POST">
     <textarea class="form-control" id="review" name="review" rows="3"></textarea>
 
-    <input type="submit" value="Submit"</>
+    <input class="btn btn-outline-warning" type="submit" value="Submit"</>
   </form>
 {{/if}}
 
