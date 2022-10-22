@@ -252,6 +252,19 @@ li {
   display: inline;
 }
 
+.lists-edit-review-link {
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #eeeeee;
+  color: #333333;
+  padding: 4px 8px 4px 8px;
+  border-top: 1px solid #cccccc;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #cccccc;
+  border-radius: 5px;
+}
+
 #name {
   width: 250px;
   border-radius: 5px;
