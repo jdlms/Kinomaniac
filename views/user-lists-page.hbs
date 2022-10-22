@@ -49,7 +49,9 @@
           />
         </a>
         <br />
-        {{!-- <a href="/film/{{this.id}}/review">Edit</a> --}}
+        <form action="/film-details/{{id}}/unlike" method="POST">
+          <input type="submit" value="Un-like" />
+        </form>
       </li>
     {{/each}}
   </ul>
