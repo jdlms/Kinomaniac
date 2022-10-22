@@ -312,3 +312,20 @@ li {
 .accordion-button:focus {
   box-shadow: none;
 }
+
+
+/* Footer */
+
+.footer {
+  text-align: center;
+  padding: 30px 0 15px 0;
+  font-weight: 400;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #23292F;
+  margin-top: 50px;
+}
+
+#link-api {
+  text-decoration: underline;
+}
