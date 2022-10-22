@@ -1,8 +1,8 @@
 {{#with randomMovie}}
 <div class="container-fluid header ">
-  <img class='background-img' src="{{large_img_url_string}}{{backdrop_path}}" alt="">
+  <img class='background-image' src="{{large_img_url_string}}{{backdrop_path}}" alt="">
   <div class="row header-title">
-    <h1>Discover new titles. Track watched films. Create lists. Welcome, Kinomaniac.</h1>
+    <h1>Discover new titles. Track watched films. Create lists. Welcome, <span id="header-span">Kinomaniac</span>.</h1>
 {{#if ../user}}
 {{else}}
     <button type="button" class="btn btn-warning cta-btn bi bi-box-arrow-in-right" data-bs-toggle="modal"
