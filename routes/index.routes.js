@@ -32,7 +32,7 @@ router.get("/", async (req, res, next) => {
     }, {});
 
     res.render("index", {
-      docTitle: "Kinomaniacs",
+      docTitle: "Kinomaniac",
       data,
       randomMovie,
       userMoviesById,
