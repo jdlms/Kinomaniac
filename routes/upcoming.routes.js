@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const { MovieDb } = require("moviedb-promise");
-const { UserMovieData } = require("../models/UserMovieData.module");
 const moviedb = new MovieDb(process.env.KEY);
 
 router.get("/upcoming-films", (req, res) => {
