@@ -20,7 +20,7 @@ router.get("/upcoming/", async (req, res) => {
 
     const config = await moviedb.configuration();
     const configCall = config.images;
-    const configString = configCall.base_url + configCall.poster_sizes[0];
+    const configString = configCall.base_url + configCall.poster_sizes[1];
     //map img link/string into each movie object
     upcoming.map((movie) => (movie.first_url_string = configString));
 
