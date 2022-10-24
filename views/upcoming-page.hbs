@@ -1,0 +1,33 @@
+<h1 class="main-content">Upcoming Films</h1>
+
+<h4>Please choose a country:</h4>
+<br />
+<select form="select-country" id="countries" name="region" class="form-control">
+  <option value="DE">Germany</option>
+  <option value="US">United States</option>
+</select>
+<br />
+<form id="select-country" action="/upcoming" method="GET">
+  <input type="submit" value="Upcoming Films" />
+</form>
+
+{{#if upcoming}}
+<div class="container-fluid navbar-correction">
+  <div class="row align-items-center">
+    {{#each upcoming}}
+    <div class="col-md-2 col-films col-sm-12 img-container">
+      <a href="/film-details/{{this.id}}"><img class="image" src="{{this.first_url_string}}{{this.poster_path}}"
+          alt="{{this.original_title}} poster" />
+      </a>
+      {{#if ../user}}
+      <div class="overlay">
+        <div class="action-icon-films" data-movie-id="{{id}}">
+          <i class="bi bi-bookmark-plus icon-films {{isWatched ../userMoviesById id}}" ></i>
+          <i class="bi bi-star-fill icon-films {{isStarred ../userMoviesById id}}"></i>
+        </div>
+      </div> 
+      {{/if}}
+    </div>
+    {{/each}}
+
+{{/if}}
