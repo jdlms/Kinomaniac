@@ -1,20 +1,21 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, default: mongoose } = require("mongoose");
+const findOrCreate = require("mongoose-findorcreate");
 
-// TODO: Please make sure you edit the user model to whatever makes sense in this case
+//User will have: username,
 const userSchema = new Schema(
   {
-    username: {
+    googleId: {
       type: String,
-      // unique: true -> Ideally, should be unique, but its up to you
+      required: true,
     },
-    password: String,
   },
   {
-    // this second object adds extra properties: `createdAt` and `updatedAt`
+    // this second object adds: `createdAt`, `updatedAt`
     timestamps: true,
   }
 );
 
+userSchema.plugin(findOrCreate);
 const User = model("User", userSchema);
 
 module.exports = User;

@@ -1,23 +1,20 @@
-{{#with randomMovie}}
-<div class="container-fluid header ">
-  <img class='background-image' src="{{large_img_url_string}}{{backdrop_path}}" alt="">
-  <div class="row header-title">
-    <h1>Discover new titles. Track watched films. Create lists. Welcome, <span id="header-span">Kinomaniac</span>.</h1>
-{{#if ../user}}
-{{else}}
-    <button type="button" class="btn btn-warning cta-btn bi bi-box-arrow-in-right" data-bs-toggle="modal"
-      data-bs-target="#exampleModal"> Login</button>
-{{/if}}
+<h1 class="main-content">Upcoming Films</h1>
 
-  </div>
-</div>
-{{/with}}
+<h4>Please choose a country:</h4>
+<br />
+<select form="select-country" id="countries" name="region" class="form-control">
+  <option value="DE">Germany</option>
+  <option value="US">United States</option>
+</select>
+<br />
+<form id="select-country" action="/upcoming" method="GET">
+  <input type="submit" value="Upcoming Films" />
+</form>
 
-
-{{#if data}}
+{{#if upcoming}}
 <div class="container-fluid navbar-correction">
   <div class="row align-items-center">
-    {{#each data}}
+    {{#each upcoming}}
     <div class="col-md-2 col-films col-sm-12 img-container">
       <a href="/film-details/{{this.id}}"><img class="image" src="{{this.first_url_string}}{{this.poster_path}}"
           alt="{{this.original_title}} poster" />
@@ -32,9 +29,5 @@
       {{/if}}
     </div>
     {{/each}}
-    {{/if}}
 
-
-
-
-    <script src="/js/icon-events.js"></script>
+{{/if}}

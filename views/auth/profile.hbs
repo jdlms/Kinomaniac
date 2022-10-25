@@ -1,0 +1,47 @@
+<div class="container-fluid navbar-correction">
+  <div class="row user-profile">
+    <div class="col">
+      <img src="{{user.picture}}" class="profile-picture" />
+      <h2>Welcome, {{user.displayName}} </h2>
+      <form action="/logout" method="POST">
+        <button type="submit" class="btn btn-primary btn-warning"><i class="bi bi-box-arrow-right"></i>
+          Logout
+        </button>
+      </form>
+    </div>
+    <div class="col" style="border-left: solid 1px #65696c; padding-left: 30px;">
+      <h3>Embrace the mania!</h3>
+      <ul>
+        <li>Check your watchlists</li>
+        <li>See you favourite movies</li>
+        <li>Create a new list</li>
+        <li>Check your reviews</li>
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row align-items-center user-profile2">
+      <span class="entry-count">
+        <h3>Watchlist</h3>
+        <span>{{watchlistCount}}</span>
+      </span>
+      <span class="entry-count">
+        <h3>Reviews</h3>
+        <span>{{reviewCount}}</span>
+      </span>
+      <span class="entry-count">
+        <h3>Starred</h3>
+        <span>{{likedCount}}</span>
+      </span>
+    </div>
+
+
+  </div>
+  <div class="container-fluid">
+    <div class="row align-items-center user-profile2">
+      <div class="col-6 user-profile3">
+        <h3>Favourite films</h3>
+        <p>FEATURE NOT YET ADDED</p>
+      </div>
+
+    </div>
