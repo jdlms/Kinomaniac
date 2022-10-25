@@ -13,7 +13,7 @@ router.get("/upcoming-films", (req, res) => {
 
 router.get("/upcoming/", async (req, res) => {
   try {
-    const upcoming1 = await moviedb.upcomingMovies(req.query.region);
+    const upcoming1 = await moviedb.upcomingMovies({ region: req.query.region });
     const upcoming2 = await moviedb.upcomingMovies({ page: 2, region: req.query.region });
     const upcoming = [...upcoming1.results, ...upcoming2.results];
 
