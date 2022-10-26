@@ -1,13 +1,17 @@
 <h1 class="main-content">Upcoming Films</h1>
 
-<h4>Please choose a country:</h4>
-<br />
-<select form="select-country" id="countries" name="region" class="form-control">
+<h4>Select a country:</h4>
+<form action="/upcoming" method="GET">
+<select form="select-country" id="region" name="region" class="form-control">
   <option value="DE">Germany</option>
   <option value="US">United States</option>
 </select>
+<h4>Select a language:</h4>
+<select form="select-language" id="language" name="language" class="form-control">
+  <option value="de">German</option>
+  <option value="en-US">English (US)</option>
+</select>
 <br />
-<form id="select-country" action="/upcoming" method="GET">
   <input type="submit" value="Upcoming Films" />
 </form>
 
