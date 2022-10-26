@@ -18,6 +18,12 @@ router.get("/film-details/:id", async (req, res) => {
       reviewed: { $eq: true },
     });
 
+    //movie release date
+    let date = new Date(data.release_date);
+    let month = date.toLocaleString("default", { month: "long" });
+    let year = date.toLocaleString("default", { year: "numeric" });
+    data.monthAndYearOfRelease = `${month} ${year}`;
+
     const movieForCurrentUser =
       req.user &&
       (await UserMovieData.findOne({
