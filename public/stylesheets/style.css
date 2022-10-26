@@ -271,7 +271,7 @@ li {
   width: 250px;
   border-radius: 5px;
 
-  border: solid 1px #23292F;
+  border: solid 1px #23292f;
   padding: 3px;
 
   padding: 3px;
@@ -280,7 +280,6 @@ li {
 
 #header-span {
   text-decoration: underline;
-
 }
 
 #search-form {
@@ -308,7 +307,6 @@ li {
   margin-right: 10px;
 }
 
-
 .film-item {
   padding: 5px 10px;
   border: solid 1px;
@@ -323,12 +321,12 @@ li {
 }
 
 .accordion-bkg {
-  background-color: #23292F;
+  background-color: #23292f;
   color: whitesmoke;
 }
 
 .accordion-button:not(.collapsed) {
-  background-color: #23292F;
+  background-color: #23292f;
   color: whitesmoke !important;
 }
 
@@ -346,17 +344,20 @@ li {
   box-shadow: none;
 }
 
-
 /* Footer */
 
 .footer {
   text-align: center;
-  padding: 30px 0 15px 0;
+  position: fixed;
+  width: 100vw;
+  padding: 20px 0 10px 0;
   font-weight: 400;
-  flex-direction: row;
+  /* flex-direction: row; */
   justify-content: center;
-  background-color: #23292F;
+  background-color: #23292f;
   margin-top: 50px;
+  position: relative;
+  bottom: 0;
 }
 
 #link-api {
