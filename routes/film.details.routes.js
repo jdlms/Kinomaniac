@@ -1,22 +1,25 @@
 const router = require("express").Router();
 const { MovieDb } = require("moviedb-promise");
 // const { isLoggedIn } = require("../middlewres/auth.middlewares");
-const { UserMovieData: UserMovieData } = require("../models/UserMovieData.module");
+const { UserMovieData } = require("../models/UserMovieData.module");
 const moviedb = new MovieDb(process.env.KEY);
 
 //view film details:
 router.get("/film-details/:id", async (req, res) => {
   try {
     //api queries
-    const data = await moviedb.movieInfo({ id: req.params.id });
-    const data_credits = await moviedb.movieCredits({ id: req.params.id });
-    //dbqueries
-    const movieDataByUser = await UserMovieData.find({ filmId: req.params.id });
-    //this query exists because I could not make HBS render movieDataByUser.reveiws
-    const allUserReviewsForMovie = await UserMovieData.find({
-      filmId: req.params.id,
-      reviewed: { $eq: true },
-    });
+    const promises = [
+      moviedb.movieInfo({ id: req.params.id }),
+      moviedb.movieCredits({ id: req.params.id }),
+      UserMovieData.find({ filmId: req.params.id }),
+      UserMovieData.find({
+        filmId: req.params.id,
+        reviewed: { $eq: true },
+      }),
+    ];
+    const [data, data_credits, movieDataByUser, allUserReviewsForMovie] = await Promise.all(
+      promises
+    );
 
     //movie release date
     let date = new Date(data.release_date);

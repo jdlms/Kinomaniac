@@ -27,7 +27,6 @@ router.get("/profile", isLoggedIn, async (req, res) => {
   res.render("auth/profile", { user: req.user, reviewCount, watchlistCount, likedCount });
 });
 
-//Define the Logout
 router.post("/logout", (req, res, next) => {
   req.logOut((err) => {
     if (err) {
@@ -35,7 +34,7 @@ router.post("/logout", (req, res, next) => {
     }
     req.session.destroy();
     res.redirect("/");
-    console.log(`-------> User Logged out`);
+  
   });
 });
 

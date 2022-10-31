@@ -15,25 +15,32 @@ router.get("/", async (req, res, next) => {
     const config = await moviedb.configuration();
     const configCall = config.images;
     const configString = configCall.base_url + configCall.poster_sizes[2];
-    //map img link/string into each movie object
-    data.map((movie) => (movie.first_url_string = configString));
-    //get larger image for header
     const largerImg = configCall.base_url + configCall.backdrop_sizes[2];
-    data.map((movie) => (movie.large_img_url_string = largerImg));
+    //map img link/string into each movie object
+
+    const newData = data.map((movie) => ({
+      ...movie,
+      first_url_string: configString,
+      large_img_url_string: largerImg,
+    }));
+
+    // data.map((movie) => (movie.first_url_string = configString));
+    //get larger image for header
+    // data.map((movie) => (movie.large_img_url_string = largerImg));
 
     //get random image from trending movies
-    const randomMovieIndex = Math.floor(Math.random() * data.length);
-    const randomMovie = data[randomMovieIndex];
+    const randomMovieIndex = Math.floor(Math.random() * newData.length);
+    const randomMovie = newData[randomMovieIndex];
 
     const usermoviedata = await UserMovieData.find({ userId: req.user?.googleId });
     const userMoviesById = usermoviedata.reduce((acc, val) => {
       acc[val.filmId] = val;
       return acc;
     }, {});
-    console.log(userMoviesById);
+
     res.render("index", {
       docTitle: "Kinomaniac",
-      data,
+      newData,
       randomMovie,
       userMoviesById,
     });

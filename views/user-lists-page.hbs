@@ -5,14 +5,14 @@
 
   <ul id="film-list-ul">
     {{#each watchlistData}}
-      <li class="user-lists-li"><a href="/film-details/{{this.id}}"><img
+      <li class="user-lists-li"><a href="/film-details/{{id}}"><img
             class="user-lists-image"
-            src="{{this.first_url_string}}{{this.poster_path}}"
-            alt="{{this.original_title}} poster"
+            src="{{first_url_string}}{{poster_path}}"
+            alt="{{original_title}} poster"
           />
         </a>
         <br />
-        <form action="/films/watchlist/{{this.id}}/delete" method="POST">
+        <form action="/films/watchlist/{{id}}/delete" method="POST">
           <input type="submit" value="Watched" />
         </form>
       </li>
@@ -23,14 +23,14 @@
 
   <ul id="film-list-ul">
     {{#each reviewsData}}
-      <li class="user-lists-li"><a href="/film-details/{{this.id}}"><img
+      <li class="user-lists-li"><a href="/film-details/{{id}}"><img
             class="user-lists-image"
-            src="{{this.first_url_string}}{{this.poster_path}}"
-            alt="{{this.original_title}} poster"
+            src="{{first_url_string}}{{poster_path}}"
+            alt="{{original_title}} poster"
           />
         </a>
         <br />
-        <a class="lists-edit-review-link" href="/film/{{this.id}}/review">Edit</a>
+        <a class="lists-edit-review-link" href="/film/{{id}}/review">Edit</a>
       </li>
     {{/each}}
   </ul>
@@ -38,10 +38,10 @@
   <h4>Liked movies:</h4>
   <ul id="film-list-ul">
     {{#each likedMoviesData}}
-      <li class="user-lists-li"><a href="/film-details/{{this.id}}"><img
+      <li class="user-lists-li"><a href="/film-details/{{id}}"><img
             class="user-lists-image"
-            src="{{this.first_url_string}}{{this.poster_path}}"
-            alt="{{this.original_title}} poster"
+            src="{{first_url_string}}{{poster_path}}"
+            alt="{{original_title}} poster"
           />
         </a>
         <br />
