@@ -24,10 +24,6 @@ router.get("/", async (req, res, next) => {
       large_img_url_string: largerImg,
     }));
 
-    // data.map((movie) => (movie.first_url_string = configString));
-    //get larger image for header
-    // data.map((movie) => (movie.large_img_url_string = largerImg));
-
     //get random image from trending movies
     const randomMovieIndex = Math.floor(Math.random() * newData.length);
     const randomMovie = newData[randomMovieIndex];
