@@ -30,7 +30,7 @@ router.get("/", async (req, res, next) => {
       acc[val.filmId] = val;
       return acc;
     }, {});
-
+    console.log(userMoviesById);
     res.render("index", {
       docTitle: "Kinomaniac",
       data,
