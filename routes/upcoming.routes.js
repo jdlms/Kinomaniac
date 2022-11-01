@@ -18,7 +18,7 @@ router.get("/upcoming/", async (req, res) => {
     const upcoming2 = await moviedb.upcomingMovies({ page: 2, region: req.query.region });
     const upcoming = [...upcoming1.results, ...upcoming2.results];
 
-    console.log(req.body);
+    console.log(req.query);
     const config = await moviedb.configuration();
     const configCall = config.images;
     const configString = configCall.base_url + configCall.poster_sizes[0];
