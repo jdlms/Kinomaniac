@@ -18,12 +18,12 @@
 
 {{#if ../watchlistButton}}
   <form action="/film-details/{{id}}" method="POST">
-    <input class="btn btn-warning btn-watchlist" type="submit" value="To watch"</>
+    <input class="btn btn-outline-warning btn-watchlist" type="submit" value="To watch"</>
 
   </form>
 {{else}}
 <form action="/films/watchlist/{{this.id}}/delete" method="POST">
-          <input class="btn btn-warning btn-watchlist" type="submit" value="Watched" />
+          <input class="btn btn-outline-warning btn-watchlist" type="submit" value="Watched" />
         </form>
 
 {{/if}}
@@ -91,7 +91,7 @@
     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
       <div class="accordion-body accordion-bkg">
         {{#if viewReviewBox}}
-  <h6>Submit your review today:</h6>
+  <h6>Submit a review:</h6>
   <form action="/film/{{data.id}}/review" method="POST">
     <textarea class="form-control" id="review" name="review" rows="3"></textarea>
 
