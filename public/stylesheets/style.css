@@ -359,4 +359,9 @@ li {
 
 #link-api {
   text-decoration: underline;
+  margin-bottom: 0;
+}
+
+.footer-p {
+  margin-bottom: 0;
 }
